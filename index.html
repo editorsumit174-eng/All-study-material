@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>All Study Material</title>
 
   <style>
@@ -95,6 +96,51 @@
       margin-top: 5px;
     }
 
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 10px 16px;
+      background: #4f46e5;
+      color: white;
+      border-radius: 9px;
+      cursor: pointer;
+      border: none;
+      font-size: 14px;
+    }
+
+    .detail-box {
+      background: white;
+      padding: 22px;
+      border-radius: 15px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+      margin-bottom: 15px;
+    }
+
+    .detail-box h2 {
+      margin-bottom: 10px;
+    }
+
+    .topic {
+      background: #f8f9ff;
+      padding: 15px;
+      margin-top: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      border: 1px solid #e5e7eb;
+    }
+
+    .topic:hover {
+      background: #eef0ff;
+    }
+
     .notice {
       background: white;
       border-radius: 14px;
@@ -140,134 +186,299 @@
   <p>Competitive Exams की तैयारी — एक ही जगह</p>
 </header>
 
-<div class="search">
-  <input type="text" placeholder="🔍 Exam, Subject या Topic खोजें...">
+<!-- HOME PAGE -->
+<div id="homePage" class="page active">
+
+  <div class="search">
+    <input
+      type="text"
+      id="searchBox"
+      placeholder="🔍 Exam, Subject या Topic खोजें..."
+      onkeyup="searchCards()"
+    >
+  </div>
+
+  <div class="container">
+
+    <h2 class="title">🔥 Popular Exams</h2>
+
+    <div class="grid" id="examGrid">
+
+      <div class="card searchable" onclick="openExam('SSC CGL')">
+        <div class="icon">📘</div>
+        <h3>SSC CGL</h3>
+        <p>Syllabus • Notes • PYQ</p>
+      </div>
+
+      <div class="card searchable" onclick="openExam('SSC CHSL')">
+        <div class="icon">📗</div>
+        <h3>SSC CHSL</h3>
+        <p>Syllabus • Notes • PYQ</p>
+      </div>
+
+      <div class="card searchable" onclick="openExam('Railway')">
+        <div class="icon">🚆</div>
+        <h3>Railway</h3>
+        <p>NTPC • Group D</p>
+      </div>
+
+      <div class="card searchable" onclick="openExam('Banking')">
+        <div class="icon">🏦</div>
+        <h3>Banking</h3>
+        <p>IBPS • SBI</p>
+      </div>
+
+      <div class="card searchable" onclick="openExam('UP Police')">
+        <div class="icon">👮</div>
+        <h3>UP Police</h3>
+        <p>Constable • SI</p>
+      </div>
+
+      <div class="card searchable" onclick="openExam('UPSSSC PET')">
+        <div class="icon">📝</div>
+        <h3>UPSSSC PET</h3>
+        <p>Syllabus • Notes</p>
+      </div>
+
+      <div class="card searchable" onclick="openExam('CTET')">
+        <div class="icon">🎓</div>
+        <h3>CTET</h3>
+        <p>Paper 1 • Paper 2</p>
+      </div>
+
+      <div class="card searchable" onclick="openExam('UPSC')">
+        <div class="icon">🇮🇳</div>
+        <h3>UPSC</h3>
+        <p>Complete Preparation</p>
+      </div>
+
+    </div>
+
+    <h2 class="title">📚 Study Subjects</h2>
+
+    <div class="grid">
+
+      <div class="card searchable" onclick="openSubject('Mathematics')">
+        <div class="icon">🧮</div>
+        <h3>Mathematics</h3>
+        <p>Topic-wise Notes</p>
+      </div>
+
+      <div class="card searchable" onclick="openSubject('Reasoning')">
+        <div class="icon">🧠</div>
+        <h3>Reasoning</h3>
+        <p>Topic-wise Notes</p>
+      </div>
+
+      <div class="card searchable" onclick="openSubject('English')">
+        <div class="icon">📖</div>
+        <h3>English</h3>
+        <p>Grammar • Vocabulary</p>
+      </div>
+
+      <div class="card searchable" onclick="openSubject('GK / GS')">
+        <div class="icon">🌍</div>
+        <h3>GK / GS</h3>
+        <p>Complete Study Material</p>
+      </div>
+
+      <div class="card searchable" onclick="openSubject('Science')">
+        <div class="icon">🔬</div>
+        <h3>Science</h3>
+        <p>Physics • Chemistry • Biology</p>
+      </div>
+
+      <div class="card searchable" onclick="openSubject('History')">
+        <div class="icon">🏛️</div>
+        <h3>History</h3>
+        <p>Topic-wise Notes</p>
+      </div>
+
+      <div class="card searchable" onclick="openSubject('Geography')">
+        <div class="icon">🗺️</div>
+        <h3>Geography</h3>
+        <p>Topic-wise Notes</p>
+      </div>
+
+      <div class="card searchable" onclick="openSubject('Polity')">
+        <div class="icon">⚖️</div>
+        <h3>Polity</h3>
+        <p>Indian Constitution</p>
+      </div>
+
+    </div>
+
+    <h2 class="title">🔔 Latest Updates</h2>
+
+    <div class="notice">
+      <h3>Latest Government Exam Notifications</h3>
+      <p>नई भर्ती, परीक्षा तिथि, Admit Card और Result की जानकारी यहाँ मिलेगी।</p>
+      <button onclick="showMessage()">View All</button>
+    </div>
+
+  </div>
+
 </div>
 
-<div class="container">
 
-  <h2 class="title">🔥 Popular Exams</h2>
+<!-- EXAM PAGE -->
+<div id="examPage" class="page">
 
-  <div class="grid">
+  <div class="container">
 
-    <div class="card">
-      <div class="icon">📘</div>
-      <h3>SSC CGL</h3>
-      <p>Syllabus • Notes • PYQ</p>
+    <button class="back" onclick="goHome()">← वापस Home</button>
+
+    <div class="detail-box">
+      <h2 id="examTitle">Exam</h2>
+      <p id="examDescription">
+        इस परीक्षा की तैयारी के लिए सभी जरूरी सामग्री।
+      </p>
     </div>
 
-    <div class="card">
-      <div class="icon">📗</div>
-      <h3>SSC CHSL</h3>
-      <p>Syllabus • Notes • PYQ</p>
+    <h2 class="title">📚 Study Material</h2>
+
+    <div class="topic" onclick="showMessage()">
+      📋 Syllabus
     </div>
 
-    <div class="card">
-      <div class="icon">🚆</div>
-      <h3>Railway</h3>
-      <p>NTPC • Group D</p>
+    <div class="topic" onclick="showMessage()">
+      📖 Notes
     </div>
 
-    <div class="card">
-      <div class="icon">🏦</div>
-      <h3>Banking</h3>
-      <p>IBPS • SBI</p>
+    <div class="topic" onclick="showMessage()">
+      📝 Previous Year Questions (PYQ)
     </div>
 
-    <div class="card">
-      <div class="icon">👮</div>
-      <h3>UP Police</h3>
-      <p>Constable • SI</p>
+    <div class="topic" onclick="showMessage()">
+      🧮 Practice Questions
     </div>
 
-    <div class="card">
-      <div class="icon">📝</div>
-      <h3>UPSSSC PET</h3>
-      <p>Syllabus • Notes</p>
+    <div class="topic" onclick="showMessage()">
+      📰 Current Affairs
     </div>
 
-    <div class="card">
-      <div class="icon">🎓</div>
-      <h3>CTET</h3>
-      <p>Paper 1 • Paper 2</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🇮🇳</div>
-      <h3>UPSC</h3>
-      <p>Complete Preparation</p>
-    </div>
-
-  </div>
-
-  <h2 class="title">📚 Study Subjects</h2>
-
-  <div class="grid">
-
-    <div class="card">
-      <div class="icon">🧮</div>
-      <h3>Mathematics</h3>
-      <p>Topic-wise Notes</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🧠</div>
-      <h3>Reasoning</h3>
-      <p>Topic-wise Notes</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">📖</div>
-      <h3>English</h3>
-      <p>Grammar • Vocabulary</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🌍</div>
-      <h3>GK / GS</h3>
-      <p>Complete Study Material</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🔬</div>
-      <h3>Science</h3>
-      <p>Physics • Chemistry • Biology</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🏛️</div>
-      <h3>History</h3>
-      <p>Topic-wise Notes</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🗺️</div>
-      <h3>Geography</h3>
-      <p>Topic-wise Notes</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">⚖️</div>
-      <h3>Polity</h3>
-      <p>Indian Constitution</p>
-    </div>
-
-  </div>
-
-  <h2 class="title">🔔 Latest Updates</h2>
-
-  <div class="notice">
-    <h3>Latest Government Exam Notifications</h3>
-    <p>नई भर्ती, परीक्षा तिथि, Admit Card और Result की जानकारी यहाँ मिलेगी।</p>
-    <button>View All</button>
   </div>
 
 </div>
+
+
+<!-- SUBJECT PAGE -->
+<div id="subjectPage" class="page">
+
+  <div class="container">
+
+    <button class="back" onclick="goHome()">← वापस Home</button>
+
+    <div class="detail-box">
+      <h2 id="subjectTitle">Subject</h2>
+      <p>इस विषय के सभी महत्वपूर्ण Topics और Study Material यहाँ मिलेगा।</p>
+    </div>
+
+    <h2 class="title">📚 Important Topics</h2>
+
+    <div class="topic" onclick="showMessage()">
+      📌 Topic-wise Notes
+    </div>
+
+    <div class="topic" onclick="showMessage()">
+      📝 Previous Year Questions
+    </div>
+
+    <div class="topic" onclick="showMessage()">
+      🧠 Practice Questions
+    </div>
+
+    <div class="topic" onclick="showMessage()">
+      ⭐ Important Questions
+    </div>
+
+  </div>
+
+</div>
+
 
 <footer>
   <p>© 2026 All Study Material</p>
   <p>Study • Practice • Succeed</p>
 </footer>
+
+
+<script>
+
+  function openExam(name) {
+
+    document.getElementById("homePage").classList.remove("active");
+
+    document.getElementById("subjectPage").classList.remove("active");
+
+    document.getElementById("examPage").classList.add("active");
+
+    document.getElementById("examTitle").innerText = name;
+
+    document.getElementById("examDescription").innerText =
+      name + " की तैयारी के लिए Syllabus, Notes, PYQ और Practice Questions।";
+
+    window.scrollTo(0, 0);
+  }
+
+
+  function openSubject(name) {
+
+    document.getElementById("homePage").classList.remove("active");
+
+    document.getElementById("examPage").classList.remove("active");
+
+    document.getElementById("subjectPage").classList.add("active");
+
+    document.getElementById("subjectTitle").innerText = name;
+
+    window.scrollTo(0, 0);
+  }
+
+
+  function goHome() {
+
+    document.getElementById("examPage").classList.remove("active");
+
+    document.getElementById("subjectPage").classList.remove("active");
+
+    document.getElementById("homePage").classList.add("active");
+
+    window.scrollTo(0, 0);
+  }
+
+
+  function showMessage() {
+
+    alert("यह section जल्द ही Study Material से जोड़ा जाएगा।");
+
+  }
+
+
+  function searchCards() {
+
+    let input =
+      document.getElementById("searchBox").value.toLowerCase();
+
+    let cards =
+      document.querySelectorAll(".searchable");
+
+    cards.forEach(function(card) {
+
+      let text =
+        card.innerText.toLowerCase();
+
+      if (text.includes(input)) {
+        card.style.display = "";
+      } else {
+        card.style.display = "none";
+      }
+
+    });
+
+  }
+
+</script>
 
 </body>
 </html>
