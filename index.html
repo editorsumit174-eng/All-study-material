@@ -2,41 +2,34 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>All Study Material - Government Exams</title>
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>All Study Material</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f3f6fa;color:#172033}
-header{background:#111827;color:#fff;text-align:center;padding:24px 15px}
-header h1{margin:0 0 7px;font-size:28px}
-header p{margin:0;color:#dbe3ef}
-.search{background:#fff;padding:14px;box-shadow:0 2px 8px #0001}
-#search{display:block;width:100%;max-width:650px;margin:auto;padding:13px 15px;border:1px solid #ccd3dd;border-radius:10px;font-size:16px}
-.container{max-width:1100px;margin:auto;padding:20px 14px}
-.page{display:none}
-.page.active{display:block}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
-.card,.subject,.topic,.box{background:#fff;border-radius:14px;padding:19px;box-shadow:0 3px 12px #00000012}
-.card,.subject,.topic{cursor:pointer;transition:.18s}
-.card:hover,.subject:hover,.topic:hover{transform:translateY(-2px)}
-.card h3,.subject h3,.topic h3{margin:0 0 7px}
-.muted{color:#687386}
-.back,.homebtn{border:0;border-radius:9px;padding:10px 16px;background:#111827;color:#fff;cursor:pointer;margin:0 7px 18px 0}
-.homebtn{background:#2563eb}
-.notice{background:#fff7ed;border-left:4px solid #f97316;border-radius:9px;padding:14px;margin-bottom:16px}
-.options{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0}
-.option{background:#111827;color:#fff;padding:15px;border-radius:10px;text-align:center;cursor:pointer}
-.content{line-height:1.7}
-.question{background:#f8fafc;border-left:4px solid #2563eb;padding:13px;margin:10px 0;border-radius:7px}
-.answer{font-weight:bold;margin-top:7px}
-ul{line-height:1.8}
-footer{text-align:center;background:#111827;color:#fff;padding:20px;margin-top:30px}
-.small{font-size:13px;color:#687386}
-@media(max-width:600px){
-header h1{font-size:23px}
-.container{padding:15px 10px}
-}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#172033}
+header{background:linear-gradient(135deg,#111827,#2563eb);color:white;padding:24px 16px;text-align:center}
+header h1{margin:0 0 8px;font-size:30px}
+header p{margin:0;opacity:.9}
+.container{max-width:1100px;margin:auto;padding:16px}
+.search{width:100%;padding:14px;border:1px solid #d1d5db;border-radius:12px;font-size:16px;margin:14px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.card{background:white;border-radius:16px;padding:18px;box-shadow:0 5px 18px #00000012;cursor:pointer;border:1px solid #e5e7eb}
+.card:hover{transform:translateY(-2px)}
+.card h3{margin:0 0 8px}.card p{margin:0;color:#64748b;font-size:14px}
+.btn{border:0;border-radius:10px;padding:10px 14px;cursor:pointer;background:#2563eb;color:#fff;margin:4px}
+.back{background:#111827}
+.tabs{display:flex;flex-wrap:wrap;gap:7px;margin:15px 0}
+.tab{background:#e5e7eb;color:#111827;border:0;border-radius:9px;padding:9px 12px;cursor:pointer}
+.tab.active{background:#2563eb;color:#fff}
+.topic{background:white;padding:14px;border-radius:12px;margin:8px 0;cursor:pointer;border:1px solid #e5e7eb}
+.topic:hover{border-color:#2563eb}
+.box{background:white;border-radius:16px;padding:18px;margin:14px 0;box-shadow:0 4px 14px #0000000d}
+.note{line-height:1.7}
+.mcq{border:1px solid #e5e7eb;padding:14px;border-radius:12px;margin:10px 0}
+.answer{background:#ecfdf5;border-left:4px solid #10b981;padding:10px;margin-top:8px}
+.imp li{margin:7px 0}
+.small{color:#64748b;font-size:13px}
+footer{text-align:center;padding:25px;color:#64748b}
 </style>
 </head>
 
@@ -44,1346 +37,1118 @@ header h1{font-size:23px}
 
 <header>
 <h1>📚 All Study Material</h1>
-<p>Government Exam Preparation — Syllabus • Topics • Notes • Practice</p>
+<p>Government Exam Preparation — Notes • Practice • Important Points</p>
 </header>
-
-<div class="search">
-<input id="search" placeholder="Exam ya subject search karein..." oninput="searchAll()">
-</div>
 
 <div class="container">
 
-<section id="home" class="page active">
+<input id="search" class="search"
+placeholder="Exam, subject या topic खोजें..."
+oninput="searchAll()">
 
-<div class="notice">
-<b>Master Study Website</b><br>
-Exam select karein → Subject → Topic → Notes / Practice / Important.
-<br>
-<span class="small">
-Syllabus ko exam-specific rakha gaya hai. Recruitment notification ko final authority maana jayega.
-</span>
-</div>
-
-<div id="examGrid" class="grid"></div>
-
-</section>
-
-
-<section id="examPage" class="page">
-
-<button class="back" onclick="home()">← Home</button>
-
-<h2 id="examTitle"></h2>
-
-<div id="examInfo" class="notice"></div>
-
-<h3>Subjects</h3>
-
-<div id="subjectGrid" class="grid"></div>
-
-</section>
-
-
-<section id="subjectPage" class="page">
-
-<button class="back" onclick="openExam(currentExam)">← Subjects</button>
-
-<h2 id="subjectTitle"></h2>
-
-<div id="topicGrid" class="grid"></div>
-
-</section>
-
-
-<section id="topicPage" class="page">
-
-<button class="back" onclick="openSubject(currentExam,currentSubject)">← Topics</button>
-
-<h2 id="topicTitle"></h2>
-
-<div class="options">
-
-<div class="option" onclick="showPart('notes')">
-📖 Notes
-</div>
-
-<div class="option" onclick="showPart('practice')">
-📝 Practice
-</div>
-
-<div class="option" onclick="showPart('important')">
-⭐ Important
-</div>
+<div id="app"></div>
 
 </div>
-
-<div id="topicContent"></div>
-
-</section>
-
-</div>
-
 
 <footer>
-© 2026 All Study Material
+Original study material • Use official exam notifications for final pattern/syllabus.
 </footer>
-
 
 <script>
 
-const DATA = {
+const exams={
 
 "SSC CGL":{
-info:"Graduate-level SSC examination. Core areas include General Intelligence & Reasoning, General Awareness, Quantitative Aptitude and English Language/Comprehension. Tier-specific details should be checked in the latest SSC notification.",
-
+desc:"SSC CGL preparation track",
 subjects:{
-
 "General Intelligence & Reasoning":[
-"Analogy",
-"Classification",
-"Series",
-"Coding-Decoding",
-"Venn Diagrams",
-"Syllogism",
-"Blood Relations",
-"Direction Sense",
-"Order & Ranking",
-"Calendar & Clock",
-"Missing Number",
-"Non-Verbal Reasoning",
-"Mirror & Water Images",
-"Paper Folding",
-"Embedded Figures",
+"Analogy","Classification","Series","Coding-Decoding","Venn Diagrams",
+"Syllogism","Blood Relations","Direction Sense","Order & Ranking",
+"Calendar & Clock","Missing Number","Non-Verbal Reasoning",
+"Mirror & Water Images","Paper Folding","Embedded Figures",
 "Statement & Conclusion"
 ],
 
 "General Awareness":[
-"Indian History",
-"Indian National Movement",
-"Indian Geography",
-"Indian Polity & Constitution",
-"Indian Economy",
-"General Science",
-"Physics Basics",
-"Chemistry Basics",
-"Biology Basics",
-"Art & Culture",
-"Awards & Honours",
-"Sports",
-"Books & Authors",
-"Important Organisations",
+"Indian History","Indian National Movement","Indian Geography",
+"Indian Polity & Constitution","Indian Economy","General Science",
+"Physics Basics","Chemistry Basics","Biology Basics","Art & Culture",
+"Awards & Honours","Sports","Books & Authors","Important Organisations",
 "Current Affairs"
 ],
 
 "Quantitative Aptitude":[
-"Number System",
-"Simplification",
-"LCM & HCF",
-"Percentage",
-"Ratio & Proportion",
-"Average",
-"Profit & Loss",
-"Simple Interest",
-"Compound Interest",
-"Time & Work",
-"Pipes & Cisterns",
-"Time Speed & Distance",
-"Algebra",
-"Geometry",
-"Mensuration",
-"Trigonometry",
-"Data Interpretation",
-"Statistics"
+"Number System","Simplification","LCM & HCF","Percentage",
+"Ratio & Proportion","Average","Profit & Loss","Simple Interest",
+"Compound Interest","Time & Work","Pipes & Cisterns",
+"Time Speed & Distance","Algebra","Geometry","Mensuration",
+"Trigonometry","Data Interpretation","Statistics"
 ],
 
 "English Language & Comprehension":[
-"Vocabulary",
-"Synonyms",
-"Antonyms",
-"One Word Substitution",
-"Idioms & Phrases",
-"Spelling",
-"Grammar",
-"Tenses",
-"Subject-Verb Agreement",
-"Articles",
-"Prepositions",
-"Active & Passive Voice",
-"Direct & Indirect Speech",
-"Error Detection",
-"Fill in the Blanks",
-"Cloze Test",
-"Reading Comprehension",
-"Sentence Improvement"
+"Vocabulary","Synonyms & Antonyms","One Word Substitution",
+"Idioms & Phrases","Spelling","Grammar","Tenses",
+"Subject-Verb Agreement","Articles","Prepositions",
+"Active & Passive Voice","Direct & Indirect Speech",
+"Error Detection","Fill in the Blanks","Cloze Test",
+"Reading Comprehension","Sentence Improvement"
 ]
-
 }},
 
-
 "SSC CHSL":{
-info:"10+2-level SSC examination. Core preparation areas include General Intelligence, General Awareness, Quantitative Aptitude and English Language.",
-
+desc:"SSC CHSL preparation track",
 subjects:{
-
 "General Intelligence":[
-"Analogy",
-"Classification",
-"Series",
-"Coding-Decoding",
-"Venn Diagram",
-"Syllogism",
-"Blood Relation",
-"Direction Test",
-"Ranking",
-"Non-Verbal Reasoning",
-"Mirror Image",
-"Paper Folding"
+"Analogy","Classification","Series","Coding-Decoding",
+"Venn Diagram","Syllogism","Blood Relation","Direction Test",
+"Ranking","Non-Verbal Reasoning","Mirror Image","Paper Folding"
 ],
 
 "General Awareness":[
-"History",
-"Geography",
-"Polity",
-"Economy",
-"General Science",
-"Physics",
-"Chemistry",
-"Biology",
-"Art & Culture",
-"Sports",
-"Awards",
-"Current Affairs"
+"History","Geography","Polity","Economy","General Science",
+"Physics","Chemistry","Biology","Art & Culture","Sports",
+"Awards","Current Affairs"
 ],
 
 "Quantitative Aptitude":[
-"Number System",
-"Arithmetic",
-"Percentage",
-"Ratio",
-"Average",
-"Profit & Loss",
-"Interest",
-"Time & Work",
-"Time & Distance",
-"Algebra",
-"Geometry",
-"Mensuration",
-"Trigonometry",
+"Number System","Arithmetic","Percentage","Ratio","Average",
+"Profit & Loss","Interest","Time & Work","Time & Distance",
+"Algebra","Geometry","Mensuration","Trigonometry",
 "Data Interpretation"
 ],
 
 "English Language":[
-"Vocabulary",
-"Grammar",
-"Tenses",
-"Articles",
-"Prepositions",
-"Voice",
-"Narration",
-"Error Detection",
-"Fillers",
-"Cloze Test",
-"Comprehension",
-"Sentence Improvement",
-"Synonyms & Antonyms"
+"Vocabulary","Grammar","Tenses","Articles","Prepositions",
+"Voice","Narration","Error Detection","Fillers","Cloze Test",
+"Comprehension","Sentence Improvement","Synonyms & Antonyms"
 ]
-
 }},
 
-
 "Railway — RRB NTPC (study track)":{
-info:"Railway is a family of examinations. This website uses RRB NTPC as the default general Railway study track. Other RRB posts can have different syllabi.",
-
+desc:"RRB NTPC-oriented preparation track",
 subjects:{
-
 "Mathematics":[
-"Number System",
-"BODMAS",
-"Decimals",
-"Fractions",
-"LCM & HCF",
-"Ratio & Proportion",
-"Percentage",
-"Mensuration",
-"Time & Work",
-"Time & Distance",
-"Simple Interest",
-"Compound Interest",
-"Profit & Loss",
-"Algebra",
-"Geometry",
-"Trigonometry",
-"Elementary Statistics",
-"Square Root",
-"Age Calculations",
-"Calendar & Clock",
-"Pipes & Cisterns"
+"Number System","BODMAS","Decimals","Fractions","LCM & HCF",
+"Ratio & Proportion","Percentage","Mensuration","Time & Work",
+"Time & Distance","Simple Interest","Compound Interest",
+"Profit & Loss","Algebra","Geometry","Trigonometry",
+"Elementary Statistics","Square Root","Age Calculations",
+"Calendar & Clock","Pipes & Cisterns"
 ],
 
 "General Intelligence & Reasoning":[
-"Analogies",
-"Alphabetical Series",
-"Number Series",
-"Coding-Decoding",
-"Mathematical Operations",
-"Relationships",
-"Syllogism",
-"Jumbling",
-"Venn Diagram",
-"Data Sufficiency",
-"Conclusions",
-"Decision Making",
-"Similarities & Differences",
-"Analytical Reasoning",
-"Classification",
-"Directions"
+"Analogies","Alphabetical Series","Number Series","Coding-Decoding",
+"Mathematical Operations","Relationships","Syllogism","Jumbling",
+"Venn Diagram","Data Sufficiency","Conclusions","Decision Making",
+"Similarities & Differences","Analytical Reasoning",
+"Classification","Directions"
 ],
 
 "General Awareness":[
-"Current Affairs",
-"Indian Geography",
-"Indian History",
-"Indian Polity",
-"Indian Economy",
-"Indian Culture",
-"Indian Sports",
-"Indian Scientific Research",
-"Indian Space & Nuclear Programmes",
-"Important Organisations",
-"Transport Systems",
-"Computers Basics",
+"Current Affairs","Indian Geography","Indian History",
+"Indian Polity","Indian Economy","Indian Culture","Indian Sports",
+"Indian Scientific Research","Indian Space & Nuclear Programmes",
+"Important Organisations","Transport Systems","Computers Basics",
 "Environment"
 ],
 
 "General Science":[
-"Physics",
-"Chemistry",
-"Life Science",
-"Human Body",
-"Nutrition",
-"Diseases",
-"Plants",
-"Everyday Science",
-"Units & Measurements"
+"Physics","Chemistry","Life Science","Human Body","Nutrition",
+"Diseases","Plants","Everyday Science","Units & Measurements"
 ]
-
 }},
 
-
 "Banking — IBPS PO/Clerk (common track)":{
-info:"Banking covers multiple examinations. This common track is designed around recurring PO/Clerk preparation areas. Always check the exact year's notification.",
-
+desc:"Common preparation track for IBPS PO/Clerk; check the post-specific notification",
 subjects:{
-
 "Reasoning Ability":[
-"Inequality",
-"Syllogism",
-"Coding-Decoding",
-"Blood Relations",
-"Direction Sense",
-"Order & Ranking",
-"Alphanumeric Series",
-"Puzzles",
-"Seating Arrangement",
-"Input-Output",
-"Data Sufficiency",
-"Logical Reasoning",
-"Statement & Assumption",
-"Statement & Conclusion"
+"Inequality","Syllogism","Coding-Decoding","Blood Relations",
+"Direction Sense","Order & Ranking","Alphanumeric Series",
+"Puzzles","Seating Arrangement","Input-Output","Data Sufficiency",
+"Logical Reasoning","Statement & Assumption","Statement & Conclusion"
 ],
 
 "Quantitative Aptitude":[
-"Simplification",
-"Approximation",
-"Number Series",
-"Quadratic Equations",
-"Percentage",
-"Ratio",
-"Average",
-"Profit & Loss",
-"Simple Interest",
-"Compound Interest",
-"Time & Work",
-"Pipes & Cisterns",
-"Time Speed & Distance",
-"Data Interpretation",
-"Probability Basics",
+"Simplification","Approximation","Number Series",
+"Quadratic Equations","Percentage","Ratio","Average",
+"Profit & Loss","Simple Interest","Compound Interest",
+"Time & Work","Pipes & Cisterns","Time Speed & Distance",
+"Data Interpretation","Probability Basics",
 "Permutation & Combination Basics"
 ],
 
 "English Language":[
-"Reading Comprehension",
-"Cloze Test",
-"Error Detection",
-"Sentence Improvement",
-"Fillers",
-"Para Jumbles",
-"Vocabulary",
-"Synonyms & Antonyms",
-"Tenses",
-"Articles",
-"Prepositions",
+"Reading Comprehension","Cloze Test","Error Detection",
+"Sentence Improvement","Fillers","Para Jumbles","Vocabulary",
+"Synonyms & Antonyms","Tenses","Articles","Prepositions",
 "Subject-Verb Agreement"
 ],
 
 "Banking & Financial Awareness":[
-"RBI",
-"Banking Terms",
-"Types of Banks",
-"Deposits",
-"Loans",
-"Monetary Policy",
-"Inflation",
-"Financial Markets",
-"Digital Payments",
-"UPI",
-"Budget Basics",
-"Economic Indicators",
+"RBI","Banking Terms","Types of Banks","Deposits","Loans",
+"Monetary Policy","Inflation","Financial Markets",
+"Digital Payments","UPI","Budget Basics","Economic Indicators",
 "Current Affairs"
 ],
 
 "Computer Awareness":[
-"Computer Basics",
-"Hardware",
-"Software",
-"Operating Systems",
-"Internet",
-"Networking",
-"MS Office Basics",
-"Cyber Safety Basics",
-"Memory & Storage",
-"Input & Output Devices"
+"Computer Basics","Hardware","Software","Operating Systems",
+"Internet","Networking","MS Office Basics","Cyber Safety Basics",
+"Memory & Storage","Input & Output Devices"
 ]
-
 }},
 
-
 "UP Police — Constable study track":{
-info:"UP Police is post-specific. This track is based on the Civil Police Constable study area; the latest UPPRPB recruitment notice remains the final authority.",
-
+desc:"UP Police Constable-oriented preparation track",
 subjects:{
-
 "General Knowledge":[
-"Indian History",
-"Indian Geography",
-"Indian Polity",
-"Indian Economy",
-"General Science",
-"Environment",
-"Current Affairs",
-"Awards",
-"Sports",
-"Books & Authors",
-"Important Days",
+"Indian History","Indian Geography","Indian Polity","Indian Economy",
+"General Science","Environment","Current Affairs","Awards","Sports",
+"Books & Authors","Important Days",
 "National & International Organisations"
 ],
 
 "General Hindi":[
-"वर्णमाला",
-"संज्ञा",
-"सर्वनाम",
-"विशेषण",
-"क्रिया",
-"काल",
-"वचन",
-"लिंग",
-"कारक",
-"संधि",
-"समास",
-"उपसर्ग",
-"प्रत्यय",
-"पर्यायवाची",
-"विलोम",
-"अनेक शब्दों के लिए एक शब्द",
-"मुहावरे",
-"लोकोक्तियाँ",
-"वाक्य शुद्धि",
-"अशुद्धि सुधार"
+"वर्णमाला","संज्ञा","सर्वनाम","विशेषण","क्रिया","काल","वचन",
+"लिंग","कारक","संधि","समास","उपसर्ग","प्रत्यय","पर्यायवाची",
+"विलोम","अनेक शब्दों के लिए एक शब्द","मुहावरे","लोकोक्तियाँ",
+"वाक्य शुद्धि","अशुद्धि सुधार"
 ],
 
 "Numerical & Mental Ability":[
-"Number System",
-"Simplification",
-"Percentage",
-"Ratio",
-"Average",
-"Profit & Loss",
-"Interest",
-"Time & Work",
-"Time & Distance",
-"Mensuration",
-"Algebra Basics",
-"Data Interpretation",
-"Series",
+"Number System","Simplification","Percentage","Ratio","Average",
+"Profit & Loss","Interest","Time & Work","Time & Distance",
+"Mensuration","Algebra Basics","Data Interpretation","Series",
 "Arithmetic Reasoning"
 ],
 
 "Reasoning Ability":[
-"Analogy",
-"Classification",
-"Series",
-"Coding-Decoding",
-"Blood Relations",
-"Direction Sense",
-"Venn Diagram",
-"Syllogism",
-"Ranking",
-"Alphabet Test",
-"Decision Making",
-"Visual Memory",
-"Observation",
-"Logical Reasoning"
+"Analogy","Classification","Series","Coding-Decoding",
+"Blood Relations","Direction Sense","Venn Diagram","Syllogism",
+"Ranking","Alphabet Test","Decision Making","Visual Memory",
+"Observation","Logical Reasoning"
 ]
-
 }},
 
-
 "UPSSSC PET":{
-info:"PET is a preliminary eligibility test for relevant UPSSSC recruitments. The syllabus should be checked against the latest PET notification.",
-
+desc:"UPSSSC PET preparation track",
 subjects:{
-
 "Indian History & National Movement":[
-"Indus Valley Civilization",
-"Vedic Culture",
-"Buddhism & Jainism",
-"Maurya Period",
-"Gupta Period",
-"Medieval India",
-"Bhakti & Sufi Movement",
-"British Rule",
-"Revolt of 1857",
-"Indian National Congress",
-"Gandhian Era",
-"Freedom Movement"
+"Indus Valley Civilization","Vedic Culture","Buddhism & Jainism",
+"Maurya Period","Gupta Period","Medieval India",
+"Bhakti & Sufi Movement","British Rule","Revolt of 1857",
+"Indian National Congress","Gandhian Era","Freedom Movement"
 ],
 
 "Geography":[
-"Earth & Solar System",
-"Indian Physical Geography",
-"Rivers",
-"Mountains",
-"Climate",
-"Soil",
-"Agriculture",
-"Minerals",
-"Industries",
-"Population",
-"Transport"
+"Earth & Solar System","Indian Physical Geography","Rivers",
+"Mountains","Climate","Soil","Agriculture","Minerals",
+"Industries","Population","Transport"
 ],
 
 "Indian Economy":[
-"Basic Economy",
-"GDP & National Income",
-"Inflation",
-"Banking",
-"RBI",
-"Budget",
-"Taxation Basics",
-"Agriculture Economy",
-"Employment",
-"Poverty & Development"
+"Basic Economy","GDP & National Income","Inflation","Banking",
+"RBI","Budget","Taxation Basics","Agriculture Economy",
+"Employment","Poverty & Development"
 ],
 
 "Indian Constitution & Public Administration":[
-"Constitution",
-"Preamble",
-"Fundamental Rights",
-"Directive Principles",
-"Fundamental Duties",
-"Parliament",
-"President",
-"Prime Minister",
-"Judiciary",
-"Local Government",
+"Constitution","Preamble","Fundamental Rights",
+"Directive Principles","Fundamental Duties","Parliament",
+"President","Prime Minister","Judiciary","Local Government",
 "Constitutional Bodies"
 ],
 
 "General Science":[
-"Physics",
-"Chemistry",
-"Biology",
-"Human Body",
-"Nutrition",
-"Diseases",
-"Plants",
-"Environment",
-"Everyday Science"
+"Physics","Chemistry","Biology","Human Body","Nutrition",
+"Diseases","Plants","Environment","Everyday Science"
 ],
 
 "Arithmetic":[
-"Number System",
-"Percentage",
-"Ratio",
-"Average",
-"Profit & Loss",
-"Interest",
-"Time & Work",
-"Time & Distance",
-"Mensuration",
-"Fractions",
-"Decimals"
+"Number System","Percentage","Ratio","Average","Profit & Loss",
+"Interest","Time & Work","Time & Distance","Mensuration",
+"Fractions","Decimals"
 ],
 
 "Reasoning":[
-"Series",
-"Analogy",
-"Classification",
-"Coding-Decoding",
-"Direction",
-"Blood Relation",
-"Calendar",
-"Clock",
-"Venn Diagram",
-"Ranking",
+"Series","Analogy","Classification","Coding-Decoding","Direction",
+"Blood Relation","Calendar","Clock","Venn Diagram","Ranking",
 "Statement & Conclusion"
 ],
 
 "General Hindi":[
-"संधि",
-"समास",
-"संधि-विच्छेद",
-"पर्यायवाची",
-"विलोम",
-"मुहावरे",
-"लोकोक्तियाँ",
-"वाक्य शुद्धि",
-"शब्द ज्ञान",
-"व्याकरण"
+"संधि","समास","संधि-विच्छेद","पर्यायवाची","विलोम",
+"मुहावरे","लोकोक्तियाँ","वाक्य शुद्धि","शब्द ज्ञान","व्याकरण"
 ],
 
 "Current Affairs":[
-"National Events",
-"International Events",
-"Government Schemes",
-"Awards",
-"Sports",
-"Science & Technology",
-"Important Appointments",
-"Books & Authors"
+"National Events","International Events","Government Schemes",
+"Awards","Sports","Science & Technology",
+"Important Appointments","Books & Authors"
 ]
-
 }},
 
-
 "CTET":{
-info:"CTET has Paper I and Paper II. The exact subject choice depends on the paper. Use the official CTET Information Bulletin for the current session.",
-
+desc:"CTET preparation track; Paper I/Paper II requirements vary",
 subjects:{
-
 "Child Development & Pedagogy":[
-"Child Development",
-"Learning & Development",
-"Learning Theories",
-"Inclusive Education",
-"Children With Special Needs",
-"Assessment",
-"Learning Difficulties",
-"Motivation",
-"Intelligence",
-"Individual Differences",
-"Child-Centred Education"
+"Child Development","Learning & Development","Learning Theories",
+"Inclusive Education","Children With Special Needs","Assessment",
+"Learning Difficulties","Motivation","Intelligence",
+"Individual Differences","Child-Centred Education"
 ],
 
 "Language I":[
-"Reading Comprehension",
-"Language Development",
-"Language Pedagogy",
-"Grammar & Vocabulary",
-"Listening & Speaking",
-"Reading & Writing",
+"Reading Comprehension","Language Development","Language Pedagogy",
+"Grammar & Vocabulary","Listening & Speaking","Reading & Writing",
 "Assessment"
 ],
 
 "Language II":[
-"Comprehension",
-"Language Learning",
-"Language Pedagogy",
-"Grammar",
-"Vocabulary",
-"Communication Skills",
-"Assessment"
+"Comprehension","Language Learning","Language Pedagogy",
+"Grammar","Vocabulary","Communication Skills","Assessment"
 ],
 
 "Mathematics":[
-"Number System",
-"Arithmetic",
-"Geometry",
-"Shapes",
-"Measurement",
-"Data Handling",
-"Patterns",
-"Money",
-"Time",
-"Pedagogical Issues"
+"Number System","Arithmetic","Geometry","Shapes","Measurement",
+"Data Handling","Patterns","Money","Time","Pedagogical Issues"
 ],
 
 "Environmental Studies":[
-"Family & Friends",
-"Food",
-"Shelter",
-"Water",
-"Travel",
-"Things We Make & Do",
-"Plants",
-"Animals",
-"Environment",
+"Family & Friends","Food","Shelter","Water","Travel",
+"Things We Make & Do","Plants","Animals","Environment",
 "EVS Pedagogy"
 ],
 
 "Science":[
-"Food",
-"Materials",
-"Living World",
-"Moving Things",
-"Electricity",
-"Magnets",
-"Natural Phenomena",
-"Natural Resources",
+"Food","Materials","Living World","Moving Things","Electricity",
+"Magnets","Natural Phenomena","Natural Resources",
 "Science Pedagogy"
 ],
 
 "Social Studies / Social Science":[
-"History",
-"Geography",
-"Social & Political Life",
-"Economics Basics",
-"Democracy",
-"Constitution",
-"Social Science Pedagogy"
+"History","Geography","Social & Political Life","Economics Basics",
+"Democracy","Constitution","Social Science Pedagogy"
 ]
-
 }},
 
-
 "UPSC Civil Services":{
-info:"UPSC Civil Services is divided into Preliminary and Main stages. This website uses a compact syllabus map for both stages. The official UPSC notification/syllabus remains final.",
-
+desc:"UPSC Civil Services preparation track",
 subjects:{
-
 "Prelims — General Studies I":[
-"Current Events",
-"History of India",
-"Indian National Movement",
-"Indian & World Geography",
-"Indian Polity & Governance",
-"Constitution",
-"Panchayati Raj",
-"Public Policy",
-"Economic & Social Development",
-"Poverty",
-"Inclusion",
-"Demographics",
-"General Issues on Environment",
-"Biodiversity",
-"Climate Change",
-"General Science"
+"Current Events","History of India","Indian National Movement",
+"Indian & World Geography","Indian Polity & Governance",
+"Constitution","Panchayati Raj","Public Policy",
+"Economic & Social Development","Poverty","Inclusion",
+"Demographics","Environment","Biodiversity",
+"Climate Change","General Science"
 ],
 
 "Prelims — CSAT":[
-"Comprehension",
-"Interpersonal & Communication Skills",
-"Logical Reasoning",
-"Analytical Ability",
-"Decision Making",
-"Problem Solving",
-"General Mental Ability",
-"Basic Numeracy",
+"Comprehension","Interpersonal & Communication Skills",
+"Logical Reasoning","Analytical Ability","Decision Making",
+"Problem Solving","General Mental Ability","Basic Numeracy",
 "Data Interpretation"
 ],
 
 "Mains — Essay":[
-"Essay Structure",
-"Introduction",
-"Arguments",
-"Examples",
-"Counter Arguments",
-"Conclusion",
-"Ethics in Writing",
+"Essay Structure","Introduction","Arguments","Examples",
+"Counter Arguments","Conclusion","Ethics in Writing",
 "Current Affairs Integration"
 ],
 
 "Mains — General Studies I":[
-"Indian Culture",
-"Art",
-"Literature",
-"Architecture",
-"Modern Indian History",
-"Freedom Struggle",
-"Post-Independence Consolidation",
-"World History",
-"Indian Society",
-"Geography"
+"Indian Culture","Art","Literature","Architecture",
+"Modern Indian History","Freedom Struggle",
+"Post-Independence Consolidation","World History",
+"Indian Society","Geography"
 ],
 
 "Mains — General Studies II":[
-"Indian Constitution",
-"Polity",
-"Governance",
-"Social Justice",
-"International Relations",
-"Parliament",
-"Judiciary",
-"Constitutional Bodies",
-"Welfare Schemes"
+"Indian Constitution","Polity","Governance","Social Justice",
+"International Relations","Parliament","Judiciary",
+"Constitutional Bodies","Welfare Schemes"
 ],
 
 "Mains — General Studies III":[
-"Indian Economy",
-"Agriculture",
-"Science & Technology",
-"Environment",
-"Biodiversity",
-"Disaster Management",
-"Internal Security",
-"Infrastructure"
+"Indian Economy","Agriculture","Science & Technology",
+"Environment","Biodiversity","Disaster Management",
+"Internal Security","Infrastructure"
 ],
 
 "Mains — General Studies IV":[
-"Ethics",
-"Integrity",
-"Aptitude",
-"Human Values",
-"Attitude",
-"Emotional Intelligence",
-"Public Service Values",
-"Probity",
+"Ethics","Integrity","Aptitude","Human Values","Attitude",
+"Emotional Intelligence","Public Service Values","Probity",
 "Case Studies"
 ],
 
 "Mains — Optional Subject":[
-"Optional Subject I",
-"Optional Subject II",
-"Paper I",
-"Paper II",
+"Optional Subject I","Optional Subject II","Paper I","Paper II",
 "Subject-specific preparation"
 ]
-
 }}
 
 };
 
+const content={
 
-const NOTES = {
+"Percentage":{
+note:"Percentage means 'per hundred'. x% = x/100. Percentage increase/decrease is calculated with the original value as the base.",
+imp:[
+"x% of y = (x/100)×y",
+"Increase by r%: new value = old × (1+r/100)",
+"Decrease by r%: new value = old × (1-r/100)"
+],
+qs:[
+["25% of 240 is?","60"],
+["A number rises from 200 to 250. Percentage increase?","25%"],
+["40 is what percent of 160?","25%"]
+]},
 
-"Percentage":
-"Percentage means per hundred. Formula: Percentage = (part / whole) × 100. Questions often require conversion between fraction, decimal and percentage.",
+"Average":{
+note:"Average = sum of observations ÷ number of observations. If average and count are known, total = average × count.",
+imp:[
+"Average of n values = sum/n",
+"If one value is replaced, change in total determines change in average",
+"Weighted averages need weights/counts"
+],
+qs:[
+["Average of 10, 20, 30?","20"],
+["Average of 5 numbers is 18. Their sum?","90"],
+["Average of 4, 8, 12, 16?","10"]
+]},
 
-"Ratio & Proportion":
-"Ratio compares two quantities. A:B means A compared with B. Proportion means two ratios are equal.",
+"Profit & Loss":{
+note:"Profit = SP − CP and Loss = CP − SP. Profit% and Loss% are normally calculated on cost price.",
+imp:[
+"Profit% = profit/CP ×100",
+"Loss% = loss/CP ×100",
+"SP = CP + profit or CP − loss"
+],
+qs:[
+["CP ₹500, SP ₹600. Profit%?","20%"],
+["CP ₹800, loss ₹80. Loss%?","10%"],
+["CP ₹1000, profit 15%. SP?","₹1150"]
+]},
 
-"Average":
-"Average = Sum of observations ÷ Number of observations.",
+"Simple Interest":{
+note:"Simple Interest (SI) = P×R×T/100. Amount = Principal + SI.",
+imp:[
+"P = principal",
+"R = annual rate percent",
+"T = time in years"
+],
+qs:[
+["P=1000,R=10%,T=2. SI?","200"],
+["SI=300,P=1500,T=2. Rate?","10%"],
+["P=2000,R=5%,T=3. Amount?","2300"]
+]},
 
-"Profit & Loss":
-"Profit = SP − CP. Loss = CP − SP. Profit/Loss percentage is normally calculated on CP.",
+"Number System":{
+note:"Number system topics include natural numbers, whole numbers, integers, rational numbers, divisibility, factors, multiples, HCF and LCM.",
+imp:[
+"Even numbers are divisible by 2",
+"A number divisible by 2 and 3 is divisible by 6",
+"For two positive integers: HCF×LCM = product"
+],
+qs:[
+["First prime number?","2"],
+["HCF of 12 and 18?","6"],
+["LCM of 4 and 6?","12"]
+]},
 
-"Simple Interest":
-"Simple Interest = (Principal × Rate × Time) / 100.",
+"Series":{
+note:"Series questions require identifying a consistent pattern such as addition, subtraction, multiplication, division or alternating operations.",
+imp:[
+"Check consecutive differences",
+"Then check ratios/multiplication",
+"For alternating patterns inspect odd and even positions"
+],
+qs:[
+["2,4,6,8, ?","10"],
+["3,6,12,24, ?","48"],
+["5,10,15,20, ?","25"]
+]},
 
-"Number System":
-"Revise natural, whole, integer, rational and irrational numbers along with divisibility rules and place value.",
+"Analogy":{
+note:"Analogy questions compare the relationship between two items and ask for an item with the same relationship.",
+imp:[
+"Identify the exact relation first",
+"Check direction of relation",
+"Avoid choosing an option based only on surface similarity"
+],
+qs:[
+["Bird : Nest :: Bee : ?","Hive"],
+["Book : Read :: Food : ?","Eat"],
+["Puppy : Dog :: Kitten : ?","Cat"]
+]},
 
-"Series":
-"Look for a repeated numerical, alphabetical or symbolic pattern. Check differences, ratios and alternating patterns.",
+"Coding-Decoding":{
+note:"Coding-decoding questions assign a rule to letters, numbers or words. First compare the original and coded forms to infer the rule.",
+imp:[
+"Check alphabet positions",
+"Look for shifts such as +1 or −1",
+"Check whether the rule is applied to every letter or alternately"
+],
+qs:[
+["If CAT is coded as DBU, DOG is coded as?","EPH"],
+["If A=1,B=2,... then C+O+D+E = ?","27"],
+["If each letter moves one step forward, BAT becomes?","CBU"]
+]},
 
-"Analogy":
-"Identify the relationship in the first pair and apply the same relationship to the second pair.",
+"Direction Sense":{
+note:"Use a fixed reference: North, South, East and West. Draw a small direction diagram when the path has several turns.",
+imp:[
+"Right turn from North = East",
+"Left turn from North = West",
+"Distance questions often require Pythagoras after finding net horizontal/vertical movement"
+],
+qs:[
+["Facing North, turn right. Direction?","East"],
+["Facing East, turn left. Direction?","North"],
+["Opposite of South?","North"]
+]},
 
-"Coding-Decoding":
-"Compare letters or words with their codes and identify the transformation rule before solving.",
+"Blood Relations":{
+note:"Translate each relation into a family tree. Keep gender and generation level clear before selecting an answer.",
+imp:[
+"Father/mother = one generation above",
+"Son/daughter = one generation below",
+"Brother/sister = same generation"
+],
+qs:[
+["Mother's son is your?","Brother (if not yourself)"],
+["Father's father is your?","Grandfather"],
+["Sister's daughter is your?","Niece"]
+]},
 
-"Direction Sense":
-"Use North, South, East and West. Drawing a small direction diagram reduces mistakes.",
+"Indian Polity":{
+note:"Indian Polity covers the Constitution, Fundamental Rights, Directive Principles, Parliament, President, Council of Ministers, Judiciary, federalism and constitutional bodies.",
+imp:[
+"The Constitution is the supreme legal framework",
+"Fundamental Rights are in Part III",
+"Directive Principles are in Part IV"
+],
+qs:[
+["Fundamental Rights are in which Part?","Part III"],
+["Directive Principles are in which Part?","Part IV"],
+["The constitutional head of the Union is?","President"]
+]},
 
-"Blood Relations":
-"Convert each relationship into a small family tree before answering.",
+"Indian History":{
+note:"Study ancient, medieval and modern India chronologically. For competitive exams, connect major events with dates, personalities, places and causes.",
+imp:[
+"Indus Valley = major Bronze Age urban civilisation",
+"Mauryan period is associated with Ashoka",
+"1857 was a major uprising against British rule"
+],
+qs:[
+["Who is associated with the Kalinga War?","Ashoka"],
+["The Revolt of 1857 began at?","Meerut"],
+["Indus Valley site famous for its dockyard?","Lothal"]
+]},
 
-"Indian Polity":
-"Focus on Constitution, Preamble, Fundamental Rights, Duties, Parliament, Executive, Judiciary and constitutional bodies.",
+"Indian Geography":{
+note:"Focus on physical geography, rivers, mountains, climate, soils, agriculture, minerals, industries, population and transport.",
+imp:[
+"Himalayas influence climate and river systems",
+"Monsoon is central to Indian climate",
+"Major rivers are important for agriculture and settlements"
+],
+qs:[
+["Highest mountain range system in India?","Himalayas"],
+["Main rainy season in most of India?","Southwest monsoon"],
+["Soil widely associated with cotton cultivation?","Black soil"]
+]},
 
-"Indian History":
-"Build a timeline from Ancient to Medieval to Modern India. For modern history, focus on major movements and their sequence.",
+"General Science":{
+note:"General Science combines basic Physics, Chemistry and Biology with everyday scientific applications.",
+imp:[
+"Physics: motion, force, work, energy, electricity",
+"Chemistry: atoms, elements, compounds, acids and bases",
+"Biology: cells, organs, plants, nutrition and diseases"
+],
+qs:[
+["Basic unit of life?","Cell"],
+["SI unit of force?","Newton"],
+["Gas essential for human respiration?","Oxygen"]
+]},
 
-"Indian Geography":
-"Revise physical features, rivers, climate, soils, agriculture, minerals, industries and maps.",
+"Grammar":{
+note:"Grammar questions test correct sentence structure, parts of speech, tense, agreement, articles, prepositions, voice and narration.",
+imp:[
+"Subject and verb should agree",
+"Use articles according to context",
+"Tense must match the time of action"
+],
+qs:[
+["Choose: He ___ to school daily.","goes"],
+["Past tense of 'write'?","wrote"],
+["Article before 'apple' in a simple sentence?","an"]
+]},
 
-"General Science":
-"Prepare basic Physics, Chemistry and Biology concepts with everyday examples and units.",
+"Vocabulary":{
+note:"Build vocabulary through word meanings, synonyms, antonyms, usage and context rather than memorising isolated lists only.",
+imp:[
+"Learn words with example sentences",
+"Revise synonyms and antonyms together",
+"Use context to infer unfamiliar words"
+],
+qs:[
+["Synonym of 'rapid'?","fast"],
+["Antonym of 'ancient'?","modern"],
+["Meaning of 'brief'?","short"]
+]},
 
-"Current Affairs":
-"Revise recent national, international, government, economy, science, sports and awards news relevant to the exam.",
+"Reading Comprehension":{
+note:"Read the passage for the main idea, then locate evidence for specific questions. Do not add information that is not supported by the passage.",
+imp:[
+"Read for central idea",
+"Answer from the passage, not personal opinion",
+"Watch for words such as 'mainly', 'except' and 'according to'"
+],
+qs:[
+["What should answers be based on?","Information in the passage"],
+["What is a main-idea question asking for?","Central idea"],
+["Should you use outside facts if the passage does not support them?","No"]
+]},
 
-"Grammar":
-"Focus on sentence structure, subject-verb agreement, tense, articles, prepositions, voice and narration.",
+"Algebra":{
+note:"Algebra uses variables and equations to represent unknown quantities. Simplify expressions before solving equations.",
+imp:[
+"Like terms can be combined",
+"Do the same operation on both sides of an equation",
+"Check the final value in the original equation"
+],
+qs:[
+["Solve x+5=12.","7"],
+["Solve 2x=18.","9"],
+["If x=3, x²+2x = ?","15"]
+]},
 
-"Vocabulary":
-"Learn words through meaning, synonym, antonym and sentence usage rather than memorising isolated lists.",
+"Geometry":{
+note:"Geometry covers lines, angles, triangles, quadrilaterals, circles and basic properties of shapes.",
+imp:[
+"Angles on a straight line sum to 180°",
+"Angles around a point sum to 360°",
+"Triangle angles sum to 180°"
+],
+qs:[
+["Angles of a triangle sum to?","180°"],
+["A right angle equals?","90°"],
+["Angles around a point sum to?","360°"]
+]},
 
-"Reading Comprehension":
-"Read for the central idea first, then locate supporting details and answer only from the passage.",
+"Time & Work":{
+note:"Work problems are easiest using rates. If a person completes 1/x of the work per day, that is the daily work rate.",
+imp:[
+"Work rate = 1/time",
+"Combined rate = sum of individual rates",
+"Time = total work ÷ rate"
+],
+qs:[
+["A completes work in 10 days. One-day work?","1/10"],
+["A and B rates 1/10 and 1/15. Combined rate?","1/6"],
+["If combined rate is 1/5 per day, time?","5 days"]
+]},
 
-"Algebra":
-"Understand variables, expressions, identities and simple equations before moving to advanced problems.",
+"Time & Distance":{
+note:"Use Distance = Speed × Time. Keep units consistent before calculating.",
+imp:[
+"D = S×T",
+"S = D/T",
+"T = D/S"
+],
+qs:[
+["Speed 60 km/h for 2 h. Distance?","120 km"],
+["120 km in 3 h. Speed?","40 km/h"],
+["At 30 km/h, time for 90 km?","3 h"]
+]},
 
-"Geometry":
-"Revise lines, angles, triangles, quadrilaterals, circles and basic properties.",
+"RBI":{
+note:"The Reserve Bank of India is India's central bank. Study its monetary policy role, currency management, banking regulation and payment systems.",
+imp:[
+"RBI conducts monetary policy",
+"RBI manages currency issuance except one-rupee notes/coins under the legal framework",
+"RBI regulates and supervises the banking system"
+],
+qs:[
+["Full form of RBI?","Reserve Bank of India"],
+["RBI is the central bank of which country?","India"],
+["One major RBI function?","Monetary policy / banking regulation"]
+]},
 
-"Mensuration":
-"Memorise and understand area, perimeter and volume formulas, then practise unit conversion.",
+"Banking Basics":{
+note:"Know deposits, loans, interest, NPA, cheque, digital payments, NEFT, RTGS, IMPS, UPI and basic banking terminology.",
+imp:[
+"Deposit = money placed with a bank",
+"Loan = money borrowed and repaid under agreed terms",
+"UPI enables instant account-to-account digital payments"
+],
+qs:[
+["Full form of UPI?","Unified Payments Interface"],
+["Money borrowed from a bank is called?","Loan"],
+["NEFT stands for?","National Electronic Funds Transfer"]
+]},
 
-"Time & Work":
-"Convert a person's work into a one-day work rate and combine rates when people work together.",
+"Child Development":{
+note:"Child Development and Pedagogy focuses on how children develop and learn, individual differences, learning theories, inclusion and assessment.",
+imp:[
+"Development is influenced by multiple factors",
+"Children learn at different rates",
+"Inclusive education aims to support diverse learners"
+],
+qs:[
+["Do all children learn at exactly the same rate?","No"],
+["What does inclusive education emphasize?","Participation and support for diverse learners"],
+["Assessment should be used only for ranking?","No"]
+]},
 
-"Time & Distance":
-"Use Speed = Distance ÷ Time and keep units consistent.",
+"Environment":{
+note:"Environment includes ecosystems, biodiversity, pollution, climate change, conservation and sustainable use of resources.",
+imp:[
+"Ecosystems contain living and non-living components",
+"Biodiversity means variety of life",
+"Conservation protects species, habitats and resources"
+],
+qs:[
+["Variety of living organisms is called?","Biodiversity"],
+["Plants use which gas in photosynthesis?","Carbon dioxide"],
+["Large-scale warming of Earth's climate is called?","Global warming"]
+]},
 
-"RBI":
-"RBI is India's central bank. Study its role in monetary policy, banking regulation, currency management and financial stability.",
-
-"Banking Basics":
-"Know deposits, loans, interest, payment systems, digital banking and common banking terminology.",
-
-"Child Development":
-"Study development as physical, cognitive, social and emotional growth and connect it with learning.",
-
-"Language Pedagogy":
-"Language learning includes listening, speaking, reading and writing. Teaching should consider learner differences and context.",
-
-"Environment":
-"Revise ecosystems, biodiversity, pollution, climate change, conservation and sustainable development.",
-
-"Ethics":
-"Ethics preparation should connect values and principles with practical public-service situations and case studies."
+"Ethics":{
+note:"Ethics deals with principles of right conduct, integrity, objectivity, empathy, accountability and public-service values.",
+imp:[
+"Integrity means consistency between values and conduct",
+"Objectivity requires evidence-based judgement",
+"Empathy helps understand another person's perspective"
+],
+qs:[
+["Integrity mainly relates to?","Honest and consistent conduct"],
+["Evidence-based impartial judgement reflects?","Objectivity"],
+["Understanding another person's feelings is?","Empathy"]
+]}
 
 };
 
-
-function noteFor(topic){
-
-if(NOTES[topic]){
-return NOTES[topic];
-}
-
-return "Is topic ke liye preparation mein definition, basic concepts, important facts/formulas, examples aur practice questions cover karein. Topic ko sub-topics mein divide karke revise karein.";
-
-}
-
-
-function questionsFor(topic){
-
-const q = {
-
-"Percentage":[
-["200 ka 10% kitna hai?","20"],
-["500 ka 20% kitna hai?","100"],
-["50 ko percentage mein likhein (100 ke base par).","50%"]
+const fallback={
+note:"Is topic ko exam-oriented tareeke se padho: definition/concept samjho, basic examples dekho, formulas or key facts revise karo, phir timed practice karo. Exact exam pattern aur latest changes ke liye official notification ko final source mano.",
+imp:[
+"Concept → examples → practice → revision",
+"Important definitions, formulas and facts ko short notes me likho",
+"Practice ke baad mistakes ka error-log banao"
 ],
-
-"Average":[
-["10, 20 aur 30 ka average kya hai?","20"],
-["5 aur 15 ka average kya hai?","10"]
-],
-
-"Profit & Loss":[
-["CP ₹100 aur SP ₹120 ho to profit kitna hai?","₹20"],
-["CP ₹500 aur SP ₹450 ho to loss kitna hai?","₹50"]
-],
-
-"Simple Interest":[
-["P=₹1000, R=10%, T=1 year. SI?","₹100"],
-["P=₹2000, R=5%, T=2 years. SI?","₹200"]
-],
-
-"Number System":[
-["Smallest natural number?","1"],
-["Kya 0 whole number hai?","Haan"]
-],
-
-"Series":[
-["2, 4, 6, 8, ?","10"],
-["3, 6, 12, 24, ?","48"]
-],
-
-"Analogy":[
-["Bird : Fly :: Fish : ?","Swim"],
-["Day : Night :: Hot : ?","Cold"]
-],
-
-"Coding-Decoding":[
-["CAT ke har letter ko +1 karne par code?","DBU"],
-["A→B, B→C, C→D ho to D ka code?","E"]
-],
-
-"Direction Sense":[
-["North ke opposite direction?","South"],
-["East ke opposite direction?","West"]
-],
-
-"Blood Relations":[
-["Father ki daughter ka relation kya hoga?","Sister"],
-["Mother ka son kaun hota hai?","Son"]
-],
-
-"Indian Polity":[
-["Indian Constitution kab lagu hua?","26 January 1950"],
-["Constitution Day kab hota hai?","26 November"]
-],
-
-"Indian History":[
-["Indian National Congress ki sthapna kis year hui?","1885"],
-["Quit India Movement kis year hua?","1942"]
-],
-
-"Indian Geography":[
-["India ki capital?","New Delhi"],
-["India ke north mein major mountain system?","Himalayas"]
-],
-
-"General Science":[
-["Force ki SI unit?","Newton"],
-["Water ka chemical formula?","H₂O"]
-],
-
-"Grammar":[
-["He ___ going to school. (is/are)","is"],
-["They ___ happy. (is/are)","are"]
-],
-
-"Vocabulary":[
-["Happy ka common synonym?","Glad"],
-["Early ka antonym?","Late"]
-],
-
-"Reading Comprehension":[
-["Passage ka central idea kya kehlata hai?","Main idea"],
-["Passage se logical conclusion ko kya kehte hain?","Inference"]
-],
-
-"Algebra":[
-["x + 5 = 10, x = ?","5"],
-["2x = 14, x = ?","7"]
-],
-
-"Geometry":[
-["Right angle kitne degrees ka hota hai?","90°"],
-["Triangle ki sides kitni hoti hain?","3"]
-],
-
-"Time & Work":[
-["A 10 din mein work karta hai. One-day work?","1/10"],
-["B 5 din mein work karta hai. One-day work?","1/5"]
-],
-
-"Time & Distance":[
-["Speed = Distance ÷ ?","Time"],
-["100 km ko 2 hours mein cover kiya. Speed?","50 km/h"]
-],
-
-"RBI":[
-["RBI ka full form?","Reserve Bank of India"],
-["India ka central bank?","RBI"]
-],
-
-"Banking Basics":[
-["ATM ka full form?","Automated Teller Machine"],
-["UPI ka full form?","Unified Payments Interface"]
-],
-
-"Child Development":[
-["Development ke major areas mein ek example?","Cognitive development"],
-["Learning mein individual differences important hain?","Haan"]
-],
-
-"Environment":[
-["Biodiversity ka simple meaning?","Living organisms ki variety"],
-["Pollution environment ko harm kar sakta hai?","Haan"]
-],
-
-"Ethics":[
-["Integrity ka simple meaning?","Honesty and consistency in principles"],
-["Public service mein impartiality important hai?","Haan"]
+qs:[
+["Is topic ko padhne ka pehla step kya hai?","Concept samajhna"],
+["Practice ke baad kya banana useful hai?","Error-log"],
+["Latest exam pattern ke liye final source kya hona chahiye?","Official notification"]
 ]
-
 };
 
-return q[topic] || [
+let page="home",
+currentExam="",
+currentSubject="",
+currentTopic="",
+currentPart="notes";
 
-["Is topic ka basic focus kya hona chahiye?","Concepts + facts + practice"],
+function esc(s){
+return String(s).replace(/[&<>"']/g,m=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#39;"
+}[m]));
+}
 
-["Preparation ka best first step kya hai?","Syllabus ko topics mein divide karna"],
+function render(){
 
-["Revision ke liye kya useful hai?","Short notes aur regular practice"]
+const app=document.getElementById("app");
 
-];
+if(page==="home") return renderHome();
+
+if(page==="exam") return renderExam();
+
+if(page==="subject") return renderSubject();
+
+renderTopic();
 
 }
 
+function renderHome(){
 
-let currentExam="";
-let currentSubject="";
-let currentTopic="";
+let h="<div class='box'><h2>🎯 Exam Select Karo</h2><p class='small'>Neeche kisi bhi exam par tap karke subjects aur chapter-wise material kholo.</p></div><div class='grid'>";
 
+Object.entries(exams).forEach(([e,v])=>{
 
-function hidePages(){
+h+=`<div class="card" onclick="openExam('${esc(e)}')">
 
-document.querySelectorAll(".page").forEach(function(x){
+<h3>${esc(e)}</h3>
 
-x.classList.remove("active");
+<p>${esc(v.desc)}</p>
+
+<p style="margin-top:10px">
+
+<b>${Object.keys(v.subjects).length}</b> subjects
+
+</p>
+
+</div>`;
 
 });
 
-}
+h+="</div>";
 
-
-function loadHome(){
-
-const grid=document.getElementById("examGrid");
-
-grid.innerHTML="";
-
-Object.keys(DATA).forEach(function(exam){
-
-const d=document.createElement("div");
-
-d.className="card examCard";
-
-d.dataset.search=(exam+" "+DATA[exam].info).toLowerCase();
-
-d.innerHTML=
-"<h3>📚 "+exam+"</h3>"+
-"<p class='muted'>Syllabus & Study Material</p>";
-
-d.onclick=function(){
-
-openExam(exam);
-
-};
-
-grid.appendChild(d);
-
-});
+document.getElementById("app").innerHTML=h;
 
 }
 
+function openExam(e){
 
-function openExam(exam){
+page="exam";
+currentExam=e;
 
-currentExam=exam;
+render();
 
-hidePages();
-
-document.getElementById("examPage").classList.add("active");
-
-document.getElementById("examTitle").textContent=exam;
-
-document.getElementById("examInfo").textContent=DATA[exam].info;
-
-const grid=document.getElementById("subjectGrid");
-
-grid.innerHTML="";
-
-Object.keys(DATA[exam].subjects).forEach(function(subject){
-
-const d=document.createElement("div");
-
-d.className="subject";
-
-d.dataset.search=(exam+" "+subject).toLowerCase();
-
-d.innerHTML=
-"<h3>📖 "+subject+"</h3>"+
-"<p class='muted'>"+
-DATA[exam].subjects[subject].length+
-" topics</p>";
-
-d.onclick=function(){
-
-openSubject(exam,subject);
-
-};
-
-grid.appendChild(d);
-
-});
+window.scrollTo(0,0);
 
 }
 
+function openSubject(s){
 
-function openSubject(exam,subject){
+page="subject";
+currentSubject=s;
 
-currentExam=exam;
+render();
 
-currentSubject=subject;
-
-hidePages();
-
-document.getElementById("subjectPage").classList.add("active");
-
-document.getElementById("subjectTitle").textContent=
-exam+" → "+subject;
-
-const grid=document.getElementById("topicGrid");
-
-grid.innerHTML="";
-
-DATA[exam].subjects[subject].forEach(function(topic,i){
-
-const d=document.createElement("div");
-
-d.className="topic";
-
-d.dataset.search=
-(exam+" "+subject+" "+topic).toLowerCase();
-
-d.innerHTML=
-"<h3>📘 "+(i+1)+". "+topic+"</h3>"+
-"<p class='muted'>Notes • Practice • Important</p>";
-
-d.onclick=function(){
-
-openTopic(exam,subject,topic);
-
-};
-
-grid.appendChild(d);
-
-});
+window.scrollTo(0,0);
 
 }
 
+function openTopic(t){
 
-function openTopic(exam,subject,topic){
+page="topic";
+currentTopic=t;
+currentPart="notes";
 
-currentExam=exam;
+render();
 
-currentSubject=subject;
-
-currentTopic=topic;
-
-hidePages();
-
-document.getElementById("topicPage").classList.add("active");
-
-document.getElementById("topicTitle").textContent=topic;
-
-document.getElementById("topicContent").innerHTML=
-"<div class='notice'>"+
-"ऊपर से Notes, Practice या Important चुनें।"+
-"</div>";
+window.scrollTo(0,0);
 
 }
-
-
-function showPart(part){
-
-const box=document.getElementById("topicContent");
-
-const topic=currentTopic;
-
-
-if(part==="notes"){
-
-box.innerHTML=
-"<div class='box content'>"+
-"<h3>📖 Notes</h3>"+
-"<p>"+noteFor(topic)+"</p>"+
-"</div>";
-
-}
-
-
-else if(part==="practice"){
-
-const qs=questionsFor(topic);
-
-let h=
-"<div class='box'>"+
-"<h3>📝 Original Practice Questions</h3>";
-
-qs.forEach(function(q,i){
-
-h+=
-"<div class='question'>"+
-"<b>Q"+(i+1)+".</b> "+
-q[0]+
-"<div class='answer'>Answer: "+
-q[1]+
-"</div>"+
-"</div>";
-
-});
-
-h+=
-"<p class='small'>"+
-"ये practice questions original study material हैं; "+
-"इन्हें किसी previous paper से copy नहीं किया गया है."+
-"</p></div>";
-
-box.innerHTML=h;
-
-}
-
-
-else{
-
-box.innerHTML=
-"<div class='box content'>"+
-"<h3>⭐ Important</h3>"+
-"<ul>"+
-"<li>पहले basic concept clear करें.</li>"+
-"<li>Formula/definitions की short list बनाएं.</li>"+
-"<li>Topic-wise practice करें.</li>"+
-"<li>गलत questions की अलग revision list रखें.</li>"+
-"<li>Latest official notification से pattern verify करें.</li>"+
-"</ul>"+
-"</div>";
-
-}
-
-}
-
 
 function home(){
 
-hidePages();
+page="home";
 
-document.getElementById("home").classList.add("active");
+render();
 
-document.getElementById("search").value="";
+window.scrollTo(0,0);
 
 }
 
+function renderExam(){
+
+const x=exams[currentExam];
+
+let h=`
+
+<button class="btn back" onclick="home()">← Home</button>
+
+<div class="box">
+
+<h2>${esc(currentExam)}</h2>
+
+<p>${esc(x.desc)}</p>
+
+</div>
+
+<div class="grid">`;
+
+Object.entries(x.subjects).forEach(([s,ts])=>{
+
+h+=`
+
+<div class="card" onclick="openSubject('${esc(s)}')">
+
+<h3>${esc(s)}</h3>
+
+<p>${ts.length} topics</p>
+
+</div>`;
+
+});
+
+h+="</div>";
+
+document.getElementById("app").innerHTML=h;
+
+}
+
+function renderSubject(){
+
+const ts=exams[currentExam].subjects[currentSubject];
+
+let h=`
+
+<button class="btn back" onclick="openExam('${esc(currentExam)}')">
+
+← ${esc(currentExam)}
+
+</button>
+
+<div class="box">
+
+<h2>${esc(currentSubject)}</h2>
+
+<p class="small">Topic select karo.</p>
+
+</div>`;
+
+ts.forEach((t,i)=>{
+
+h+=`
+
+<div class="topic" onclick="openTopic('${esc(t)}')">
+
+<b>${i+1}. ${esc(t)}</b>
+
+<div class="small">
+
+Notes • Practice • Important Points
+
+</div>
+
+</div>`;
+
+});
+
+document.getElementById("app").innerHTML=h;
+
+}
+
+function renderTopic(){
+
+const c=content[currentTopic]||fallback;
+
+let h=`
+
+<button class="btn back" onclick="openSubject('${esc(currentSubject)}')">
+
+← Topics
+
+</button>
+
+<div class="box">
+
+<h2>${esc(currentTopic)}</h2>
+
+<p class="small">
+
+${esc(currentExam)} • ${esc(currentSubject)}
+
+</p>
+
+<div class="tabs">
+
+<button class="tab ${currentPart==="notes"?"active":""}" onclick="showPart('notes')">
+
+📖 Notes
+
+</button>
+
+<button class="tab ${currentPart==="practice"?"active":""}" onclick="showPart('practice')">
+
+📝 Practice
+
+</button>
+
+<button class="tab ${currentPart==="important"?"active":""}" onclick="showPart('important')">
+
+⭐ Important
+
+</button>
+
+</div>
+
+</div>`;
+
+if(currentPart==="notes")
+
+h+=`
+
+<div class="box note">
+
+<h3>📖 Short Notes</h3>
+
+<p>${esc(c.note)}</p>
+
+<h3>Example/Approach</h3>
+
+<p>
+
+Definition ko samjho, formula ya rule ko yaad karo,
+
+phir 2–3 basic examples solve karo.
+
+Uske baad exam-level questions par jao.
+
+</p>
+
+</div>`;
+
+if(currentPart==="important")
+
+h+=`
+
+<div class="box imp">
+
+<h3>⭐ Important Points</h3>
+
+<ul>
+
+${c.imp.map(x=>`<li>${esc(x)}</li>`).join("")}
+
+</ul>
+
+<p class="small">
+
+Revision tip: in points ko short notebook/error-log me revise karo.
+
+</p>
+
+</div>`;
+
+if(currentPart==="practice")
+
+h+=`
+
+<div class="box">
+
+<h3>📝 Practice Questions</h3>
+
+${c.qs.map((q,i)=>`
+
+<div class="mcq">
+
+<b>Q${i+1}. ${esc(q[0])}</b>
+
+<div class="answer">
+
+Answer: <b>${esc(q[1])}</b>
+
+</div>
+
+</div>
+
+`).join("")}
+
+</div>`;
+
+document.getElementById("app").innerHTML=h;
+
+}
+
+function showPart(p){
+
+currentPart=p;
+
+render();
+
+}
 
 function searchAll(){
 
-const v=document.getElementById("search").value.trim().toLowerCase();
+const q=document.getElementById("search").value.toLowerCase().trim();
 
-if(!v){
+if(!q){
 
-loadHome();
+if(page==="home") renderHome();
 
 return;
 
 }
 
-hidePages();
+let h=`
 
-document.getElementById("home").classList.add("active");
+<div class="box">
 
-document.querySelectorAll(".examCard").forEach(function(c){
+<h2>🔎 Search Results</h2>
 
-c.style.display=
-c.dataset.search.includes(v)
-?"block"
-:"none";
+<p class="small">"${esc(q)}" ke results</p>
 
-});
+</div>`;
+
+let count=0;
+
+Object.entries(exams).forEach(([e,v])=>{
+
+const em=e.toLowerCase().includes(q);
+
+Object.entries(v.subjects).forEach(([s,ts])=>{
+
+const sm=s.toLowerCase().includes(q);
+
+ts.forEach(t=>{
+
+if(em||sm||t.toLowerCase().includes(q)){
+
+count++;
+
+h+=`
+
+<div class="topic"
+
+onclick="openTopicFromSearch('${esc(e)}','${esc(s)}','${esc(t)}')">
+
+<b>${esc(t)}</b>
+
+<div class="small">
+
+${esc(e)} → ${esc(s)}
+
+</div>
+
+</div>`;
 
 }
 
+});
 
-loadHome();
+});
+
+});
+
+if(!count)
+
+h+=`
+
+<div class='box'>
+
+Koi result nahi mila. Dusra keyword try karo.
+
+</div>`;
+
+document.getElementById("app").innerHTML=h;
+
+}
+
+function openTopicFromSearch(e,s,t){
+
+currentExam=e;
+currentSubject=s;
+currentTopic=t;
+page="topic";
+currentPart="notes";
+
+render();
+
+window.scrollTo(0,0);
+
+}
+
+render();
 
 </script>
 
