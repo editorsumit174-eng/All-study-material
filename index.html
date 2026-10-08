@@ -122,31 +122,81 @@ header p{
   margin-bottom:10px;
 }
 
-.subject{
+.subject-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.subject-card{
   background:#f1f3ff;
-  padding:14px;
-  border-radius:10px;
+  padding:15px;
+  border-radius:11px;
+  cursor:pointer;
+  border:1px solid #e1e4ff;
+}
+
+.subject-card:active{
+  transform:scale(.97);
+}
+
+.subject-card b{
+  font-size:14px;
+}
+
+.subject-card p{
+  font-size:12px;
+  color:#666;
+  margin-top:6px;
+}
+
+.option-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
   margin-top:10px;
 }
 
-.subject b{
-  font-size:15px;
+.option{
+  background:#f1f3ff;
+  padding:15px;
+  border-radius:11px;
+  cursor:pointer;
 }
 
-.note{
-  margin-top:7px;
-  font-size:13px;
+.option b{
+  font-size:14px;
+}
+
+.content-box{
+  background:#f8f9ff;
+  padding:15px;
+  border-radius:11px;
+  line-height:1.7;
+  font-size:14px;
+}
+
+.question{
+  background:#f8f9ff;
+  padding:14px;
+  border-radius:10px;
+  margin-top:10px;
   line-height:1.6;
-  color:#555;
+}
+
+.answer{
+  color:#4f46e5;
+  font-weight:bold;
+  margin-top:6px;
 }
 
 .btn{
   border:0;
   background:#4f46e5;
   color:white;
-  padding:9px 14px;
+  padding:10px 15px;
   border-radius:8px;
-  margin-top:9px;
+  margin-top:10px;
   cursor:pointer;
 }
 
@@ -158,9 +208,16 @@ footer{
 }
 
 @media(max-width:500px){
+
   .grid{
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:1fr 1fr;
   }
+
+  .subject-grid,
+  .option-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
 }
 </style>
 </head>
@@ -168,74 +225,74 @@ footer{
 <body>
 
 <header>
-  <h1>📚 All Study Material</h1>
-  <p>Government Exams • Notes • Syllabus • PYQ • Practice</p>
+<h1>📚 All Study Material</h1>
+<p>Government Exams • Notes • PYQ • Practice</p>
 </header>
 
 <div class="search">
-  <input
-    type="text"
-    id="search"
-    placeholder="🔍 Exam search karein..."
-    oninput="searchExam()"
-  >
+<input
+id="search"
+type="text"
+placeholder="🔍 Exam search karein..."
+oninput="searchExam()">
 </div>
 
 <div class="container">
 
 <!-- HOME -->
+
 <div id="home">
 
 <h2 class="title">🎯 All Exams</h2>
 
-<div class="grid" id="examGrid">
+<div class="grid">
 
 <div class="card exam" onclick="openExam('SSC CGL')">
-  <div class="icon">📊</div>
-  <h3>SSC CGL</h3>
-  <p>SSC Graduate Level</p>
+<div class="icon">📊</div>
+<h3>SSC CGL</h3>
+<p>Graduate Level</p>
 </div>
 
 <div class="card exam" onclick="openExam('SSC CHSL')">
-  <div class="icon">📝</div>
-  <h3>SSC CHSL</h3>
-  <p>10+2 Level</p>
+<div class="icon">📝</div>
+<h3>SSC CHSL</h3>
+<p>10+2 Level</p>
 </div>
 
 <div class="card exam" onclick="openExam('Railway')">
-  <div class="icon">🚆</div>
-  <h3>Railway</h3>
-  <p>RRB Exams</p>
+<div class="icon">🚆</div>
+<h3>Railway</h3>
+<p>RRB Exams</p>
 </div>
 
 <div class="card exam" onclick="openExam('Banking')">
-  <div class="icon">🏦</div>
-  <h3>Banking</h3>
-  <p>Bank Exams</p>
+<div class="icon">🏦</div>
+<h3>Banking</h3>
+<p>Bank Exams</p>
 </div>
 
 <div class="card exam" onclick="openExam('UP Police')">
-  <div class="icon">👮</div>
-  <h3>UP Police</h3>
-  <p>Police Recruitment</p>
+<div class="icon">👮</div>
+<h3>UP Police</h3>
+<p>Police Recruitment</p>
 </div>
 
 <div class="card exam" onclick="openExam('UPSSSC PET')">
-  <div class="icon">📚</div>
-  <h3>UPSSSC PET</h3>
-  <p>UP Government Exams</p>
+<div class="icon">📚</div>
+<h3>UPSSSC PET</h3>
+<p>UP Government Exams</p>
 </div>
 
 <div class="card exam" onclick="openExam('CTET')">
-  <div class="icon">👨‍🏫</div>
-  <h3>CTET</h3>
-  <p>Teacher Eligibility</p>
+<div class="icon">👨‍🏫</div>
+<h3>CTET</h3>
+<p>Teacher Eligibility</p>
 </div>
 
 <div class="card exam" onclick="openExam('UPSC')">
-  <div class="icon">🏛️</div>
-  <h3>UPSC</h3>
-  <p>Civil Services</p>
+<div class="icon">🏛️</div>
+<h3>UPSC</h3>
+<p>Civil Services</p>
 </div>
 
 </div>
@@ -243,89 +300,117 @@ footer{
 
 
 <!-- EXAM PAGE -->
+
 <div id="examPage" class="page">
 
-<button class="back" onclick="goHome()">← Back to Exams</button>
+<button class="back" onclick="goHome()">← All Exams</button>
 
 <h2 id="examTitle" class="title"></h2>
 
-
-<!-- SYLLABUS -->
-<div class="material">
-<h3>📚 Syllabus</h3>
-<div id="syllabus"></div>
-</div>
-
-
-<!-- NOTES -->
-<div class="material">
-<h3>📝 Study Material / Notes</h3>
-
-<div class="subject">
-<b>📘 Complete Notes</b>
-
-<p id="notes" class="note"></p>
-
-<button class="btn" onclick="showMessage('Notes')">
-Open Notes
-</button>
-
-</div>
-</div>
-
-
-<!-- PYQ -->
 <div class="material">
 
-<h3>❓ Previous Year Questions</h3>
+<h3>📚 Subjects</h3>
 
-<div class="subject">
-
-<b>📄 Previous Year Papers</b>
-
-<p class="note">
-Previous Year Questions aur solved papers yahan available honge.
-</p>
-
-<button class="btn" onclick="showMessage('PYQ')">
-Open PYQ
-</button>
-
-</div>
+<div id="subjects" class="subject-grid"></div>
 
 </div>
 
 
-<!-- PRACTICE -->
 <div class="material">
 
-<h3>🧠 Practice Questions</h3>
+<h3>📖 Study Material</h3>
 
-<div class="subject">
+<div class="option-grid">
 
-<b>✍️ Practice Set</b>
+<div class="option" onclick="openContent('notes')">
+<b>📘 Notes</b>
+<p>Important study notes</p>
+</div>
 
-<p class="note">
-Subject-wise practice questions yahan se practice karein.
-</p>
+<div class="option" onclick="openContent('pyq')">
+<b>📄 PYQ</b>
+<p>Previous year questions</p>
+</div>
 
-<button class="btn" onclick="showMessage('Practice')">
-Start Practice
-</button>
+<div class="option" onclick="openContent('practice')">
+<b>🧠 Practice</b>
+<p>Practice questions</p>
+</div>
+
+<div class="option" onclick="openContent('pattern')">
+<b>📋 Exam Pattern</b>
+<p>Exam information</p>
+</div>
+
+</div>
 
 </div>
 
 </div>
 
 
-<!-- EXAM PATTERN -->
+<!-- SUBJECT PAGE -->
+
+<div id="subjectPage" class="page">
+
+<button class="back" onclick="backToExam()">← Back</button>
+
+<h2 id="subjectTitle" class="title"></h2>
+
 <div class="material">
 
-<h3>📋 Exam Pattern</h3>
+<h3>📚 Subject Material</h3>
 
-<div class="subject">
-<p id="pattern" class="note"></p>
+<div class="option-grid">
+
+<div class="option" onclick="showSubjectContent('notes')">
+<b>📘 Notes</b>
+<p>Chapter notes</p>
 </div>
+
+<div class="option" onclick="showSubjectContent('questions')">
+<b>🧠 Questions</b>
+<p>Practice questions</p>
+</div>
+
+<div class="option" onclick="showSubjectContent('pyq')">
+<b>📄 PYQ</b>
+<p>Previous questions</p>
+</div>
+
+<div class="option" onclick="showSubjectContent('important')">
+<b>⭐ Important</b>
+<p>Important topics</p>
+</div>
+
+</div>
+
+</div>
+
+<div id="subjectContent" class="material">
+
+<h3>📖 Select Material</h3>
+
+<div class="content-box">
+Upar diye gaye Notes, Questions, PYQ ya Important Topics mein se koi option select karein.
+</div>
+
+</div>
+
+</div>
+
+
+<!-- CONTENT PAGE -->
+
+<div id="contentPage" class="page">
+
+<button class="back" onclick="backToExam()">← Back</button>
+
+<h2 id="contentTitle" class="title"></h2>
+
+<div class="material">
+
+<div id="contentBox" class="content-box"></div>
 
 </div>
 
@@ -341,17 +426,23 @@ Start Practice
 
 <script>
 
+let currentExam = "";
+let currentSubject = "";
+
+
+/* =========================
+   ALL EXAM DATA
+========================= */
+
 const exams = {
 
 "SSC CGL":{
 subjects:[
-"General Intelligence & Reasoning",
+"Reasoning",
 "General Awareness",
 "Quantitative Aptitude",
-"English Comprehension"
-],
-notes:"SSC CGL ke liye Reasoning, General Awareness, Maths aur English ki preparation karein.",
-pattern:"SSC CGL ka exact selection process aur pattern official notification ke according check karein."
+"English"
+]
 },
 
 "SSC CHSL":{
@@ -360,20 +451,16 @@ subjects:[
 "General Awareness",
 "Quantitative Aptitude",
 "English Language"
-],
-notes:"SSC CHSL preparation mein Maths, Reasoning, English aur General Awareness par focus karein.",
-pattern:"SSC CHSL ka exact exam pattern official notification ke according check karein."
+]
 },
 
 "Railway":{
 subjects:[
 "Mathematics",
-"General Intelligence & Reasoning",
+"Reasoning",
 "General Awareness",
 "General Science"
-],
-notes:"Railway exams ke liye Maths, Reasoning, General Science aur Current Affairs ki practice karein.",
-pattern:"Railway exam pattern post aur recruitment ke according alag ho sakta hai."
+]
 },
 
 "Banking":{
@@ -381,10 +468,8 @@ subjects:[
 "Reasoning Ability",
 "Quantitative Aptitude",
 "English Language",
-"General / Banking Awareness"
-],
-notes:"Banking exams mein Reasoning, Quantitative Aptitude, English aur Banking Awareness important hain.",
-pattern:"Banking exam ka pattern exam aur post ke according alag ho sakta hai."
+"Banking Awareness"
+]
 },
 
 "UP Police":{
@@ -393,9 +478,7 @@ subjects:[
 "General Hindi",
 "Numerical Ability",
 "Reasoning Ability"
-],
-notes:"UP Police preparation mein GK, Hindi, Maths aur Reasoning ki regular practice karein.",
-pattern:"UP Police selection process recruitment notification ke according check karein."
+]
 },
 
 "UPSSSC PET":{
@@ -406,13 +489,11 @@ subjects:[
 "Indian Economy",
 "Indian Constitution",
 "General Science",
-"Elementary Arithmetic",
+"Arithmetic",
 "Reasoning",
 "General Hindi",
 "Current Affairs"
-],
-notes:"UPSSSC PET ke liye History, Geography, Economy, Science, Hindi, Reasoning aur Current Affairs padhein.",
-pattern:"PET exam ka exact pattern official notification ke according check karein."
+]
 },
 
 "CTET":{
@@ -422,10 +503,9 @@ subjects:[
 "Language II",
 "Mathematics",
 "Environmental Studies",
-"Science / Social Studies"
-],
-notes:"CTET preparation mein Child Development & Pedagogy aur selected subjects par focus karein.",
-pattern:"CTET Paper I aur Paper II ka pattern official notification ke according check karein."
+"Science",
+"Social Studies"
+]
 },
 
 "UPSC":{
@@ -433,116 +513,408 @@ subjects:[
 "History",
 "Geography",
 "Indian Polity",
-"Indian Economy",
+"Economy",
 "Environment",
 "Science & Technology",
 "Current Affairs",
 "CSAT"
-],
-notes:"UPSC preparation mein NCERT, standard books, Current Affairs aur answer writing par focus karein.",
-pattern:"UPSC Civil Services mein Prelims, Mains aur Interview stages hoti hain."
+]
 }
 
 };
 
 
+/* =========================
+   OPEN EXAM
+========================= */
+
 function openExam(name){
 
-  const data = exams[name];
+currentExam = name;
 
-  if(!data){
-    alert("Exam data nahi mila.");
-    return;
-  }
+document.getElementById("home").style.display="none";
+document.getElementById("subjectPage").style.display="none";
+document.getElementById("contentPage").style.display="none";
+document.getElementById("examPage").style.display="block";
 
-  document.getElementById("home").style.display = "none";
-  document.getElementById("examPage").style.display = "block";
+document.getElementById("examTitle").textContent="📚 "+name;
 
-  document.getElementById("examTitle").textContent =
-    "📚 " + name;
+let html="";
+
+exams[name].subjects.forEach(function(subject){
+
+html += `
+<div class="subject-card"
+onclick="openSubject('${subject.replace(/'/g,"\\'")}')">
+
+<b>📖 ${subject}</b>
+
+<p>
+Notes • Questions • PYQ
+</p>
+
+</div>
+`;
+
+});
+
+document.getElementById("subjects").innerHTML=html;
+
+window.scrollTo(0,0);
+
+}
 
 
-  let syllabusHTML = "";
+/* =========================
+   OPEN SUBJECT
+========================= */
 
-  data.subjects.forEach(function(subject){
+function openSubject(subject){
 
-    syllabusHTML += `
-      <div class="subject">
-        <b>📖 ${subject}</b>
-        <p class="note">
-          ${subject} ke notes aur important questions yahan add kiye ja sakte hain.
-        </p>
-      </div>
-    `;
+currentSubject = subject;
 
-  });
+document.getElementById("examPage").style.display="none";
+document.getElementById("contentPage").style.display="none";
+document.getElementById("subjectPage").style.display="block";
 
-  document.getElementById("syllabus").innerHTML = syllabusHTML;
+document.getElementById("subjectTitle").textContent=
+"📖 "+currentExam+" - "+subject;
 
-  document.getElementById("notes").textContent = data.notes;
+document.getElementById("subjectContent").innerHTML=`
 
-  document.getElementById("pattern").textContent = data.pattern;
+<h3>📖 ${subject}</h3>
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+<div class="content-box">
+
+<b>📘 Notes</b>
+
+<p>
+${subject} ke important concepts, definitions,
+formulas aur exam-oriented points yahan padhein.
+</p>
+
+<hr>
+
+<b>🧠 Practice</b>
+
+<p>
+Is subject ke questions solve karke apni preparation
+aur accuracy improve karein.
+</p>
+
+<hr>
+
+<b>📄 PYQ</b>
+
+<p>
+Previous year questions ko chapter-wise practice karein.
+</p>
+
+</div>
+`;
+
+window.scrollTo(0,0);
+
+}
+
+
+/* =========================
+   SUBJECT MATERIAL
+========================= */
+
+function showSubjectContent(type){
+
+let box="";
+
+if(type==="notes"){
+
+box=`
+<h3>📘 ${currentSubject} Notes</h3>
+
+<p>
+<strong>Important Notes:</strong>
+</p>
+
+<p>
+Is section mein ${currentSubject} ke important concepts,
+definitions, rules, formulas aur exam-oriented notes
+chapter-wise add kiye ja sakte hain.
+</p>
+
+<p>
+Daily revision ke liye important points ko baar-baar
+revise karein.
+</p>
+`;
+
+}
+
+else if(type==="questions"){
+
+box=`
+<h3>🧠 ${currentSubject} Practice</h3>
+
+<div class="question">
+<b>Question 1</b>
+<p>
+${currentSubject} ka basic concept kya hai?
+</p>
+<p class="answer">
+Answer: Concept ko topic ke according revise karein.
+</p>
+</div>
+
+<div class="question">
+<b>Question 2</b>
+<p>
+Exam preparation mein is subject ki practice
+kyon important hai?
+</p>
+<p class="answer">
+Answer: Speed aur accuracy improve karne ke liye.
+</p>
+</div>
+`;
+
+}
+
+else if(type==="pyq"){
+
+box=`
+<h3>📄 ${currentSubject} PYQ</h3>
+
+<div class="question">
+<b>Previous Year Question 1</b>
+
+<p>
+Is section mein ${currentSubject} ke previous year
+questions chapter-wise add kiye ja sakte hain.
+</p>
+</div>
+
+<div class="question">
+<b>Previous Year Question 2</b>
+
+<p>
+PYQ ko solve karne ke baad answer aur explanation
+check karein.
+</p>
+</div>
+`;
+
+}
+
+else{
+
+box=`
+<h3>⭐ Important Topics</h3>
+
+<div class="question">
+<b>Important Topic 1</b>
+<p>
+${currentSubject} ke frequently asked topics ko
+pehle revise karein.
+</p>
+</div>
+
+<div class="question">
+<b>Important Topic 2</b>
+<p>
+Short notes banakar regular revision karein.
+</p>
+</div>
+`;
+
+}
+
+document.getElementById("subjectContent").innerHTML=box;
+
+}
+
+
+/* =========================
+   GENERAL CONTENT
+========================= */
+
+function openContent(type){
+
+document.getElementById("examPage").style.display="none";
+document.getElementById("subjectPage").style.display="none";
+document.getElementById("contentPage").style.display="block";
+
+let title="";
+let html="";
+
+if(type==="notes"){
+
+title="📘 "+currentExam+" - Notes";
+
+html=`
+<h3>Complete Study Notes</h3>
+
+<p>
+${currentExam} ki preparation ke liye subjects ko
+regularly revise karein.
+</p>
+
+<br>
+
+<b>Study Strategy</b>
+
+<p>
+1. Syllabus complete karein.<br>
+2. Topic-wise notes padhein.<br>
+3. Daily questions solve karein.<br>
+4. PYQ practice karein.<br>
+5. Regular revision karein.
+</p>
+`;
+
+}
+
+else if(type==="pyq"){
+
+title="📄 "+currentExam+" - PYQ";
+
+html=`
+<h3>Previous Year Questions</h3>
+
+<p>
+${currentExam} ke previous year questions ko
+subject-wise aur chapter-wise practice karein.
+</p>
+
+<div class="question">
+<b>PYQ Practice</b>
+<p>
+Previous year papers ko timer ke saath solve karna
+exam preparation ke liye useful hai.
+</p>
+</div>
+`;
+
+}
+
+else if(type==="practice"){
+
+title="🧠 "+currentExam+" - Practice";
+
+html=`
+<h3>Practice Questions</h3>
+
+<div class="question">
+<b>Question 1</b>
+<p>
+Aapne aaj kitne questions practice kiye?
+</p>
+</div>
+
+<div class="question">
+<b>Question 2</b>
+<p>
+Kisi bhi topic ko strong banane ke liye regular
+practice kyon zaroori hai?
+</p>
+</div>
+
+<div class="question">
+<b>Question 3</b>
+<p>
+PYQ aur mock test preparation mein kaise helpful hain?
+</p>
+</div>
+`;
+
+}
+
+else{
+
+title="📋 "+currentExam+" - Exam Pattern";
+
+html=`
+<h3>Exam Pattern</h3>
+
+<p>
+${currentExam} ka exact pattern, marks, duration aur
+selection process official notification ke according
+check karein.
+</p>
+
+<br>
+
+<b>Preparation Tip</b>
+
+<p>
+Syllabus ke har subject ko cover karke PYQ aur
+practice tests zaroor solve karein.
+</p>
+`;
+
+}
+
+document.getElementById("contentTitle").textContent=title;
+document.getElementById("contentBox").innerHTML=html;
+
+window.scrollTo(0,0);
+
+}
+
+
+/* =========================
+   BACK BUTTONS
+========================= */
+
+function backToExam(){
+
+document.getElementById("subjectPage").style.display="none";
+document.getElementById("contentPage").style.display="none";
+document.getElementById("examPage").style.display="block";
+
+window.scrollTo(0,0);
+
 }
 
 
 function goHome(){
 
-  document.getElementById("examPage").style.display = "none";
+document.getElementById("examPage").style.display="none";
+document.getElementById("subjectPage").style.display="none";
+document.getElementById("contentPage").style.display="none";
 
-  document.getElementById("home").style.display = "block";
+document.getElementById("home").style.display="block";
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+window.scrollTo(0,0);
+
 }
 
+
+/* =========================
+   SEARCH
+========================= */
 
 function searchExam(){
 
-  const value =
-    document.getElementById("search").value.toLowerCase().trim();
+let value=
+document.getElementById("search")
+.value
+.toLowerCase()
+.trim();
 
-  const cards =
-    document.querySelectorAll(".exam");
+document.querySelectorAll(".exam").forEach(function(card){
 
-  cards.forEach(function(card){
+let text=card.innerText.toLowerCase();
 
-    const text =
-      card.innerText.toLowerCase();
-
-    if(text.includes(value)){
-      card.style.display = "";
-    }else{
-      card.style.display = "none";
-    }
-
-  });
+if(text.includes(value)){
+card.style.display="";
+}else{
+card.style.display="none";
 }
 
-
-function showMessage(type){
-
-  if(type === "Notes"){
-    alert("📘 Notes section ready hai. Ab isme actual study material/PDF add kiya ja sakta hai.");
-  }
-
-  if(type === "PYQ"){
-    alert("📄 PYQ section ready hai. Ab isme Previous Year Papers add kiye ja sakte hain.");
-  }
-
-  if(type === "Practice"){
-    alert("🧠 Practice section ready hai. Ab isme subject-wise questions add kiye ja sakte hain.");
-  }
+});
 
 }
 
 </script>
 
 </body>
-</html>
+  </html>
