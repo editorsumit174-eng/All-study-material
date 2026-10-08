@@ -18,7 +18,7 @@ header h1{margin:0 0 8px;font-size:30px} header p{margin:0;opacity:.92}
 .btn{border:0;border-radius:10px;padding:10px 14px;cursor:pointer;background:#2563eb;color:#fff;margin:4px}
 .btn.secondary{background:#475569}.btn.back{background:#111827}
 .handnote{background:#fffdf2;border:1px solid #e7d9a8;border-radius:12px;padding:22px;box-shadow:0 3px 12px #00000010;font-family:"Comic Sans MS","Segoe Print",cursive;line-height:1.8;position:relative;background-image:linear-gradient(#fffdf2 31px,#dfe8f2 32px);background-size:100% 32px}
-.handnote h3{font-family:Arial,sans-serif}.teacher{background:#0f172a;color:#fff;border-radius:16px;padding:18px;overflow:hidden}.teacher-screen{background:#fff;color:#172033;border-radius:12px;min-height:240px;padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}.teacher-title{font-size:24px;font-weight:800}.teacher-text{font-size:18px;line-height:1.55;margin-top:12px}.progress{height:8px;background:#334155;border-radius:20px;overflow:hidden;margin:14px 0}.progress>i{display:block;height:100%;width:0;background:#60a5fa}.video-controls{display:flex;flex-wrap:wrap;gap:6px}.smallbtn{border:0;border-radius:9px;padding:9px 12px;cursor:pointer;background:#e2e8f0;color:#0f172a}.smallbtn.primary{background:#2563eb;color:#fff}.printbtn{float:right}
+.handnote h3{font-family:Arial,sans-serif}.teacher{background:#0b1220;color:#fff;border-radius:16px;padding:12px;overflow:hidden}.teacher-video{position:relative;background:linear-gradient(135deg,#172554,#0f172a);border-radius:14px;min-height:330px;padding:14px;display:grid;grid-template-columns:115px 1fr;gap:12px;align-items:center}.teacher-avatar{background:#fff;color:#111827;border-radius:18px;height:180px;display:flex;align-items:center;justify-content:center;font-size:76px;box-shadow:0 8px 25px #0006;position:relative}.teacher-avatar.talking{animation:teacherTalk .45s infinite alternate}.teacher-bubble{background:#fff;color:#172033;border-radius:14px;padding:20px;min-height:210px;display:flex;flex-direction:column;justify-content:center;box-shadow:0 8px 25px #0004}.teacher-title{font-size:24px;font-weight:800}.teacher-text{font-size:18px;line-height:1.55;margin-top:12px}.teacher-subtitle{position:absolute;left:14px;right:14px;bottom:12px;background:#000b;color:#fff;padding:9px 12px;border-radius:9px;text-align:center;font-size:15px}.progress{height:8px;background:#334155;border-radius:20px;overflow:hidden;margin:14px 0}.progress>i{display:block;height:100%;width:0;background:#60a5fa;transition:width .3s}.video-controls{display:flex;flex-wrap:wrap;gap:6px}.smallbtn{border:0;border-radius:9px;padding:9px 12px;cursor:pointer;background:#e2e8f0;color:#0f172a}.smallbtn.primary{background:#2563eb;color:#fff}.voice-status{font-size:13px;color:#cbd5e1;margin-top:8px}@keyframes teacherTalk{from{transform:translateY(0) scale(1)}to{transform:translateY(-3px) scale(1.03)}}.printbtn{float:right}
 
 .tabs{display:flex;flex-wrap:wrap;gap:7px;margin:15px 0}
 .tab{background:#e5e7eb;color:#111827;border:0;border-radius:9px;padding:9px 12px;cursor:pointer}
@@ -575,26 +575,44 @@ function renderTopic(){
 }
 function teacherHTML(c){
  const slides=[
-  {t:'आज का Topic',x:`${currentTopic} — ${currentSubject}`},
-  {t:'Concept',x:c.note},
-  {t:'Important Points',x:c.imp.join(' • ')},
-  {t:'Formula / Rule',x:c.formula.length?c.formula.join(' • '):'इस topic के लिए मुख्य rule और examples को revise करें.'},
-  {t:'Quick Practice',x:c.qs.length?c.qs[0][0]+' Answer: '+c.qs[0][1]:'अब PYQ और timed practice करें.'},
-  {t:'Final Revision',x:'Concept समझो → Example करो → PYQ लगाओ → गलती नोट करो → दोबारा revise करो.'}
+  {t:'नमस्ते! आज की Class',x:`आज हम ${currentTopic} को आसान हिंदी में समझेंगे। पहले concept समझेंगे, फिर example, important points और अंत में revision करेंगे।`},
+  {t:'Concept समझिए',x:c.note},
+  {t:'Example / सवाल',x:c.qs.length?`अब एक सवाल देखते हैं: ${c.qs[0][0]} सही उत्तर है: ${c.qs[0][1]}। इसी तरह के सवाल परीक्षा में practice करने हैं।`:'अब इसी concept पर examples और previous-year pattern के सवाल लगाइए।'},
+  {t:'Important Points',x:c.imp.join('। ')},
+  {t:'Formula / Rule',x:c.formula.length?c.formula.join('। '):'इस topic में fixed formula नहीं है। इसके मुख्य rules, concepts और examples को याद रखें।'},
+  {t:'Exam Trick',x:`${currentTopic} में पहले question को ध्यान से पढ़ें, दिए गए facts को पहचानें और फिर सबसे छोटा तथा सही method लगाएँ।`},
+  {t:'Quick Revision',x:'Concept समझो → Example करो → Practice करो → PYQ लगाओ → गलती लिखो → दोबारा Revision करो।'},
+  {t:'Class समाप्त',x:'बहुत बढ़िया! अब Practice और Mock Test लगाइए। गलत questions को दोबारा पढ़कर अपनी तैयारी मजबूत कीजिए।'}
  ];
- window.teacherSlides=slides;window.teacherIndex=0;
- return `<div class="teacher"><h3>🎥 AI Teacher — Video Lesson</h3><p>यह browser-based AI-style lesson है: topic को slides में समझाता है और device की text-to-speech voice से पढ़कर सुनाता है. किसी API key की जरूरत नहीं.</p><div class="teacher-screen"><div class="teacher-title" id="teacherTitle"></div><div class="teacher-text" id="teacherText"></div></div><div class="progress"><i id="teacherProgress"></i></div><div class="video-controls"><button class="smallbtn primary" onclick="teacherPlay()">▶️ Play Lesson</button><button class="smallbtn" onclick="teacherPrev()">◀ Previous</button><button class="smallbtn" onclick="teacherNext()">Next ▶</button><button class="smallbtn" onclick="speechSynthesis.cancel()">⏹ Stop Voice</button></div></div><div class="box"><h3>🤖 AI Teacher Study Flow</h3><ol><li>Concept explanation</li><li>Important points</li><li>Formula/rules</li><li>Example/PYQ pattern</li><li>Quick revision</li></ol><p class="small">अगर बाद में real AI-generated talking-avatar video चाहिए, तो सुरक्षित तरीका server-side AI/video API integration है; API key को HTML में नहीं रखना चाहिए.</p></div>`;
+ window.teacherSlides=slides;window.teacherIndex=0;window.teacherSpeaking=false;
+ return `<div class="teacher"><h3>🎬 AI Teacher — Hindi Video Class</h3><p>यह lesson video की तरह चलेगा: animated teacher, slide, subtitles और हिंदी voice के साथ। आवाज शुरू करने के लिए Play दबाएँ।</p><div class="teacher-video"><div id="teacherAvatar" class="teacher-avatar">👨‍🏫</div><div class="teacher-bubble"><div class="teacher-title" id="teacherTitle"></div><div class="teacher-text" id="teacherText"></div></div><div class="teacher-subtitle" id="teacherSubtitle"></div></div><div class="progress"><i id="teacherProgress"></i></div><div class="video-controls"><button class="smallbtn primary" onclick="teacherPlay()">▶️ Hindi में Class चलाएँ</button><button class="smallbtn" onclick="teacherPause()">⏸ Pause</button><button class="smallbtn" onclick="teacherPrev()">◀ Previous</button><button class="smallbtn" onclick="teacherNext()">Next ▶</button><button class="smallbtn" onclick="teacherStop()">⏹ Stop</button></div><div class="voice-status" id="teacherVoiceStatus">🎙️ Hindi voice तैयार है।</div></div><div class="box"><h3>🤖 Teacher Flow</h3><ol><li>Concept हिंदी में समझाया जाएगा</li><li>Example और exam approach</li><li>Important points</li><li>Formula / rules</li><li>Quick revision</li></ol><p class="small">नोट: मोबाइल browser audio को user action चाहिए, इसलिए पहले “Hindi में Class चलाएँ” दबाएँ।</p></div>`;
 }
 function teacherRender(){
  const s=window.teacherSlides?.[window.teacherIndex];if(!s)return;
- const a=document.getElementById('teacherTitle'),b=document.getElementById('teacherText'),p=document.getElementById('teacherProgress');
- if(a)a.textContent=s.t;if(b)b.textContent=s.x;if(p)p.style.width=((window.teacherIndex+1)/window.teacherSlides.length*100)+'%';
+ const a=document.getElementById('teacherTitle'),b=document.getElementById('teacherText'),sub=document.getElementById('teacherSubtitle'),p=document.getElementById('teacherProgress');
+ if(a)a.textContent=s.t;if(b)b.textContent=s.x;if(sub)sub.textContent=s.x;if(p)p.style.width=((window.teacherIndex+1)/window.teacherSlides.length*100)+'%';
 }
 function teacherNext(){if(!window.teacherSlides)return;window.teacherIndex=Math.min(window.teacherIndex+1,window.teacherSlides.length-1);teacherRender();}
 function teacherPrev(){if(!window.teacherSlides)return;window.teacherIndex=Math.max(window.teacherIndex-1,0);teacherRender();}
+function teacherPause(){window.teacherPaused=true;speechSynthesis.pause();const e=document.getElementById('teacherVoiceStatus');if(e)e.textContent='⏸️ Hindi class paused.';}
+function teacherStop(){window.teacherPaused=false;window.teacherSpeaking=false;speechSynthesis.cancel();const a=document.getElementById('teacherAvatar');if(a)a.classList.remove('talking');const e=document.getElementById('teacherVoiceStatus');if(e)e.textContent='⏹️ Class stopped.';}
+function teacherPickVoice(){const vs=speechSynthesis.getVoices();return vs.find(v=>/^hi(-|_)/i.test(v.lang))||vs.find(v=>/hindi/i.test(v.name))||vs.find(v=>/IN/i.test(v.lang))||vs[0];}
 function teacherPlay(){
- if(!window.teacherSlides)return; speechSynthesis.cancel(); window.teacherIndex=0; teacherRender();
- const play=()=>{ if(window.teacherIndex>=window.teacherSlides.length)return; const s=window.teacherSlides[window.teacherIndex]; teacherRender(); const u=new SpeechSynthesisUtterance(s.t+'. '+s.x);u.lang='hi-IN';u.rate=.9;u.onend=()=>{window.teacherIndex++;if(window.teacherIndex<window.teacherSlides.length)play();else teacherRender()};speechSynthesis.speak(u);}; play();
+ if(!window.teacherSlides)return;
+ teacherStop();window.teacherPaused=false;window.teacherSpeaking=true;window.teacherIndex=0;
+ const play=()=>{
+  if(window.teacherPaused||!window.teacherSpeaking)return;
+  if(window.teacherIndex>=window.teacherSlides.length){teacherStop();window.teacherIndex=window.teacherSlides.length-1;teacherRender();return;}
+  const s=window.teacherSlides[window.teacherIndex];teacherRender();
+  const u=new SpeechSynthesisUtterance(s.t+'. '+s.x);u.lang='hi-IN';u.rate=.88;u.pitch=1;u.volume=1;
+  const v=teacherPickVoice();if(v)u.voice=v;
+  const a=document.getElementById('teacherAvatar'),st=document.getElementById('teacherVoiceStatus');
+  if(a)a.classList.add('talking');if(st)st.textContent='🔊 हिंदी में पढ़ाया जा रहा है…';
+  u.onend=()=>{if(a)a.classList.remove('talking');if(!window.teacherSpeaking||window.teacherPaused)return;window.teacherIndex++;setTimeout(play,450)};
+  u.onerror=()=>{if(a)a.classList.remove('talking');if(st)st.textContent='⚠️ Hindi voice उपलब्ध नहीं मिली। Phone की Text-to-Speech settings में Hindi voice install करें.'};
+  speechSynthesis.speak(u);
+ };
+ play();
 }
 function printNotes(){window.print()}
 function showPart(p){currentPart=p;render();if(p==='teacher')teacherRender()}
@@ -615,3 +633,4 @@ render();
 </script>
 </body>
 </html>
+
