@@ -1,482 +1,845 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Study Material</title>
 
-  <title>All Study Material</title>
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+body{
+  background:#f5f7fb;
+  color:#172033;
+}
 
-    body {
-      background: #f5f7fb;
-      color: #172033;
-    }
+header{
+  background:linear-gradient(135deg,#4f46e5,#7c3aed);
+  color:white;
+  padding:28px 18px;
+  text-align:center;
+}
 
-    header {
-      background: linear-gradient(135deg, #4f46e5, #7c3aed);
-      color: white;
-      padding: 25px 18px;
-      text-align: center;
-    }
+header h1{
+  font-size:28px;
+  margin-bottom:8px;
+}
 
-    header h1 {
-      font-size: 28px;
-      margin-bottom: 8px;
-    }
+header p{
+  font-size:14px;
+  opacity:.9;
+}
 
-    header p {
-      font-size: 14px;
-      opacity: 0.9;
-    }
+.search{
+  padding:18px;
+  background:white;
+}
 
-    .search {
-      padding: 18px;
-      background: white;
-    }
+.search input{
+  width:100%;
+  padding:14px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  font-size:15px;
+}
 
-    .search input {
-      width: 100%;
-      padding: 14px 16px;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      font-size: 15px;
-      outline: none;
-    }
+.container{
+  padding:18px;
+  max-width:1100px;
+  margin:auto;
+}
 
-    .container {
-      padding: 18px;
-      max-width: 1100px;
-      margin: auto;
-    }
+.title{
+  font-size:22px;
+  margin:20px 0 14px;
+}
 
-    .title {
-      font-size: 22px;
-      margin: 20px 0 14px;
-    }
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
+.card{
+  background:white;
+  padding:18px 12px;
+  border-radius:14px;
+  box-shadow:0 3px 12px rgba(0,0,0,.07);
+  text-align:center;
+  cursor:pointer;
+  transition:.2s;
+}
 
-    .card {
-      background: white;
-      padding: 18px 12px;
-      border-radius: 14px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.07);
-      text-align: center;
-      cursor: pointer;
-      transition: 0.2s;
-    }
+.card:hover{
+  transform:translateY(-3px);
+}
 
-    .card:hover {
-      transform: translateY(-3px);
-    }
+.icon{
+  font-size:28px;
+  margin-bottom:8px;
+}
 
-    .card .icon {
-      font-size: 28px;
-      margin-bottom: 8px;
-    }
+.card h3{
+  font-size:15px;
+}
 
-    .card h3 {
-      font-size: 15px;
-    }
+.card p{
+  font-size:12px;
+  color:#666;
+  margin-top:5px;
+}
 
-    .card p {
-      font-size: 12px;
-      color: #666;
-      margin-top: 5px;
-    }
+.page{
+  display:none;
+}
 
-    .page {
-      display: none;
-    }
+.page.active{
+  display:block;
+}
 
-    .page.active {
-      display: block;
-    }
+.back{
+  margin-bottom:18px;
+  padding:10px 16px;
+  background:#4f46e5;
+  color:white;
+  border:0;
+  border-radius:9px;
+  cursor:pointer;
+}
 
-    .back {
-      display: inline-block;
-      margin-bottom: 18px;
-      padding: 10px 16px;
-      background: #4f46e5;
-      color: white;
-      border-radius: 9px;
-      cursor: pointer;
-      border: none;
-      font-size: 14px;
-    }
+.box{
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  box-shadow:0 3px 12px rgba(0,0,0,.07);
+  margin-bottom:15px;
+}
 
-    .detail-box {
-      background: white;
-      padding: 22px;
-      border-radius: 15px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.07);
-      margin-bottom: 15px;
-    }
+.topic{
+  background:white;
+  padding:17px;
+  margin:10px 0;
+  border-radius:12px;
+  border:1px solid #e5e7eb;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,.04);
+}
 
-    .detail-box h2 {
-      margin-bottom: 10px;
-    }
+.topic:hover{
+  background:#eef0ff;
+}
 
-    .topic {
-      background: #f8f9ff;
-      padding: 15px;
-      margin-top: 10px;
-      border-radius: 10px;
-      cursor: pointer;
-      border: 1px solid #e5e7eb;
-    }
+.question{
+  background:white;
+  padding:18px;
+  margin:12px 0;
+  border-radius:12px;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
 
-    .topic:hover {
-      background: #eef0ff;
-    }
+.option{
+  margin-top:8px;
+  padding:10px;
+  background:#f5f7fb;
+  border-radius:8px;
+}
 
-    .notice {
-      background: white;
-      border-radius: 14px;
-      padding: 18px;
-      margin-top: 10px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.07);
-    }
+.answer{
+  margin-top:12px;
+  padding:10px;
+  background:#ecfdf5;
+  border-radius:8px;
+  display:none;
+}
 
-    .notice button {
-      margin-top: 10px;
-      border: none;
-      background: #4f46e5;
-      color: white;
-      padding: 9px 14px;
-      border-radius: 8px;
-    }
+.showAnswer{
+  margin-top:10px;
+  padding:8px 12px;
+  border:0;
+  border-radius:7px;
+  background:#4f46e5;
+  color:white;
+}
 
-    footer {
-      margin-top: 30px;
-      background: #172033;
-      color: white;
-      text-align: center;
-      padding: 25px 15px;
-      font-size: 13px;
-    }
+footer{
+  margin-top:30px;
+  background:#172033;
+  color:white;
+  text-align:center;
+  padding:25px;
+  font-size:13px;
+}
 
-    @media (min-width: 700px) {
-      .grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
+@media(min-width:700px){
+  .grid{
+    grid-template-columns:repeat(4,1fr);
+  }
 
-      header h1 {
-        font-size: 36px;
-      }
-    }
-  </style>
+  header h1{
+    font-size:36px;
+  }
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>📚 All Study Material</h1>
-  <p>Competitive Exams की तैयारी — एक ही जगह</p>
+<h1>📚 All Study Material</h1>
+<p>Competitive Exams की तैयारी — एक ही जगह</p>
 </header>
 
-<!-- HOME PAGE -->
-<div id="homePage" class="page active">
 
-  <div class="search">
-    <input
-      type="text"
-      id="searchBox"
-      placeholder="🔍 Exam, Subject या Topic खोजें..."
-      onkeyup="searchCards()"
-    >
-  </div>
+<!-- HOME -->
 
-  <div class="container">
+<div id="home" class="page active">
 
-    <h2 class="title">🔥 Popular Exams</h2>
+<div class="search">
+<input id="search" type="text"
+placeholder="🔍 Exam या Subject खोजें..."
+onkeyup="searchCards()">
+</div>
 
-    <div class="grid" id="examGrid">
+<div class="container">
 
-      <div class="card searchable" onclick="openExam('SSC CGL')">
-        <div class="icon">📘</div>
-        <h3>SSC CGL</h3>
-        <p>Syllabus • Notes • PYQ</p>
-      </div>
+<h2 class="title">🔥 Popular Exams</h2>
 
-      <div class="card searchable" onclick="openExam('SSC CHSL')">
-        <div class="icon">📗</div>
-        <h3>SSC CHSL</h3>
-        <p>Syllabus • Notes • PYQ</p>
-      </div>
+<div class="grid">
 
-      <div class="card searchable" onclick="openExam('Railway')">
-        <div class="icon">🚆</div>
-        <h3>Railway</h3>
-        <p>NTPC • Group D</p>
-      </div>
+<div class="card searchable" onclick="exam('SSC CGL')">
+<div class="icon">📘</div>
+<h3>SSC CGL</h3>
+<p>Syllabus • Notes • PYQ</p>
+</div>
 
-      <div class="card searchable" onclick="openExam('Banking')">
-        <div class="icon">🏦</div>
-        <h3>Banking</h3>
-        <p>IBPS • SBI</p>
-      </div>
+<div class="card searchable" onclick="exam('SSC CHSL')">
+<div class="icon">📗</div>
+<h3>SSC CHSL</h3>
+<p>Syllabus • Notes • PYQ</p>
+</div>
 
-      <div class="card searchable" onclick="openExam('UP Police')">
-        <div class="icon">👮</div>
-        <h3>UP Police</h3>
-        <p>Constable • SI</p>
-      </div>
+<div class="card searchable" onclick="exam('Railway')">
+<div class="icon">🚆</div>
+<h3>Railway</h3>
+<p>NTPC • Group D</p>
+</div>
 
-      <div class="card searchable" onclick="openExam('UPSSSC PET')">
-        <div class="icon">📝</div>
-        <h3>UPSSSC PET</h3>
-        <p>Syllabus • Notes</p>
-      </div>
+<div class="card searchable" onclick="exam('Banking')">
+<div class="icon">🏦</div>
+<h3>Banking</h3>
+<p>IBPS • SBI</p>
+</div>
 
-      <div class="card searchable" onclick="openExam('CTET')">
-        <div class="icon">🎓</div>
-        <h3>CTET</h3>
-        <p>Paper 1 • Paper 2</p>
-      </div>
+<div class="card searchable" onclick="exam('UP Police')">
+<div class="icon">👮</div>
+<h3>UP Police</h3>
+<p>Constable • SI</p>
+</div>
 
-      <div class="card searchable" onclick="openExam('UPSC')">
-        <div class="icon">🇮🇳</div>
-        <h3>UPSC</h3>
-        <p>Complete Preparation</p>
-      </div>
+<div class="card searchable" onclick="exam('UPSSSC PET')">
+<div class="icon">📝</div>
+<h3>UPSSSC PET</h3>
+<p>Syllabus • Notes</p>
+</div>
 
-    </div>
+<div class="card searchable" onclick="exam('CTET')">
+<div class="icon">🎓</div>
+<h3>CTET</h3>
+<p>Paper 1 • Paper 2</p>
+</div>
 
-    <h2 class="title">📚 Study Subjects</h2>
+<div class="card searchable" onclick="exam('UPSC')">
+<div class="icon">🇮🇳</div>
+<h3>UPSC</h3>
+<p>Complete Preparation</p>
+</div>
 
-    <div class="grid">
+</div>
 
-      <div class="card searchable" onclick="openSubject('Mathematics')">
-        <div class="icon">🧮</div>
-        <h3>Mathematics</h3>
-        <p>Topic-wise Notes</p>
-      </div>
 
-      <div class="card searchable" onclick="openSubject('Reasoning')">
-        <div class="icon">🧠</div>
-        <h3>Reasoning</h3>
-        <p>Topic-wise Notes</p>
-      </div>
+<h2 class="title">📚 Study Subjects</h2>
 
-      <div class="card searchable" onclick="openSubject('English')">
-        <div class="icon">📖</div>
-        <h3>English</h3>
-        <p>Grammar • Vocabulary</p>
-      </div>
+<div class="grid">
 
-      <div class="card searchable" onclick="openSubject('GK / GS')">
-        <div class="icon">🌍</div>
-        <h3>GK / GS</h3>
-        <p>Complete Study Material</p>
-      </div>
+<div class="card searchable" onclick="subject('Mathematics')">
+<div class="icon">🧮</div>
+<h3>Mathematics</h3>
+<p>Topic-wise Study</p>
+</div>
 
-      <div class="card searchable" onclick="openSubject('Science')">
-        <div class="icon">🔬</div>
-        <h3>Science</h3>
-        <p>Physics • Chemistry • Biology</p>
-      </div>
+<div class="card searchable" onclick="subject('Reasoning')">
+<div class="icon">🧠</div>
+<h3>Reasoning</h3>
+<p>Topic-wise Study</p>
+</div>
 
-      <div class="card searchable" onclick="openSubject('History')">
-        <div class="icon">🏛️</div>
-        <h3>History</h3>
-        <p>Topic-wise Notes</p>
-      </div>
+<div class="card searchable" onclick="subject('English')">
+<div class="icon">📖</div>
+<h3>English</h3>
+<p>Grammar • Vocabulary</p>
+</div>
 
-      <div class="card searchable" onclick="openSubject('Geography')">
-        <div class="icon">🗺️</div>
-        <h3>Geography</h3>
-        <p>Topic-wise Notes</p>
-      </div>
+<div class="card searchable" onclick="subject('GK / GS')">
+<div class="icon">🌍</div>
+<h3>GK / GS</h3>
+<p>Complete Study</p>
+</div>
 
-      <div class="card searchable" onclick="openSubject('Polity')">
-        <div class="icon">⚖️</div>
-        <h3>Polity</h3>
-        <p>Indian Constitution</p>
-      </div>
+<div class="card searchable" onclick="subject('Science')">
+<div class="icon">🔬</div>
+<h3>Science</h3>
+<p>Physics • Chemistry • Biology</p>
+</div>
 
-    </div>
+<div class="card searchable" onclick="subject('History')">
+<div class="icon">🏛️</div>
+<h3>History</h3>
+<p>Topic-wise Study</p>
+</div>
 
-    <h2 class="title">🔔 Latest Updates</h2>
+<div class="card searchable" onclick="subject('Geography')">
+<div class="icon">🗺️</div>
+<h3>Geography</h3>
+<p>Topic-wise Study</p>
+</div>
 
-    <div class="notice">
-      <h3>Latest Government Exam Notifications</h3>
-      <p>नई भर्ती, परीक्षा तिथि, Admit Card और Result की जानकारी यहाँ मिलेगी।</p>
-      <button onclick="showMessage()">View All</button>
-    </div>
+<div class="card searchable" onclick="subject('Polity')">
+<div class="icon">⚖️</div>
+<h3>Polity</h3>
+<p>Indian Constitution</p>
+</div>
 
-  </div>
+</div>
 
+</div>
 </div>
 
 
 <!-- EXAM PAGE -->
+
 <div id="examPage" class="page">
 
-  <div class="container">
+<div class="container">
 
-    <button class="back" onclick="goHome()">← वापस Home</button>
+<button class="back" onclick="home()">← वापस Home</button>
 
-    <div class="detail-box">
-      <h2 id="examTitle">Exam</h2>
-      <p id="examDescription">
-        इस परीक्षा की तैयारी के लिए सभी जरूरी सामग्री।
-      </p>
-    </div>
+<div class="box">
+<h2 id="examName"></h2>
+<p>इस परीक्षा के लिए पूरा Study Material नीचे उपलब्ध है।</p>
+</div>
 
-    <h2 class="title">📚 Study Material</h2>
+<h2 class="title">📚 Subjects</h2>
 
-    <div class="topic" onclick="showMessage()">
-      📋 Syllabus
-    </div>
+<div id="examSubjects" class="grid"></div>
 
-    <div class="topic" onclick="showMessage()">
-      📖 Notes
-    </div>
-
-    <div class="topic" onclick="showMessage()">
-      📝 Previous Year Questions (PYQ)
-    </div>
-
-    <div class="topic" onclick="showMessage()">
-      🧮 Practice Questions
-    </div>
-
-    <div class="topic" onclick="showMessage()">
-      📰 Current Affairs
-    </div>
-
-  </div>
-
+</div>
 </div>
 
 
 <!-- SUBJECT PAGE -->
+
 <div id="subjectPage" class="page">
 
-  <div class="container">
+<div class="container">
 
-    <button class="back" onclick="goHome()">← वापस Home</button>
+<button class="back" onclick="backExam()">← वापस</button>
 
-    <div class="detail-box">
-      <h2 id="subjectTitle">Subject</h2>
-      <p>इस विषय के सभी महत्वपूर्ण Topics और Study Material यहाँ मिलेगा।</p>
-    </div>
+<div class="box">
+<h2 id="subjectName"></h2>
+<p>Topic चुनें और आगे Study Material देखें।</p>
+</div>
 
-    <h2 class="title">📚 Important Topics</h2>
+<h2 class="title">📚 Topics</h2>
 
-    <div class="topic" onclick="showMessage()">
-      📌 Topic-wise Notes
-    </div>
+<div id="topics"></div>
 
-    <div class="topic" onclick="showMessage()">
-      📝 Previous Year Questions
-    </div>
+</div>
+</div>
 
-    <div class="topic" onclick="showMessage()">
-      🧠 Practice Questions
-    </div>
 
-    <div class="topic" onclick="showMessage()">
-      ⭐ Important Questions
-    </div>
+<!-- MATERIAL PAGE -->
 
-  </div>
+<div id="materialPage" class="page">
 
+<div class="container">
+
+<button class="back" onclick="backSubject()">← वापस</button>
+
+<div class="box">
+<h2 id="materialTitle"></h2>
+<p>यहाँ Notes, PYQ और Practice Questions मिलेंगे।</p>
+</div>
+
+<div class="topic" onclick="material('Notes')">
+📖 <b>Notes</b>
+<p>इस Topic के महत्वपूर्ण Notes</p>
+</div>
+
+<div class="topic" onclick="material('PYQ')">
+📝 <b>Previous Year Questions</b>
+<p>पिछले वर्षों के महत्वपूर्ण प्रश्न</p>
+</div>
+
+<div class="topic" onclick="material('Practice Questions')">
+🧠 <b>Practice Questions</b>
+<p>अभ्यास के लिए प्रश्न</p>
+</div>
+
+</div>
+</div>
+
+
+<!-- CONTENT PAGE -->
+
+<div id="contentPage" class="page">
+
+<div class="container">
+
+<button class="back" onclick="backMaterial()">← वापस</button>
+
+<div class="box">
+<h2 id="contentTitle"></h2>
+</div>
+
+<div id="content"></div>
+
+</div>
 </div>
 
 
 <footer>
-  <p>© 2026 All Study Material</p>
-  <p>Study • Practice • Succeed</p>
+© 2026 All Study Material<br>
+Study • Practice • Succeed
 </footer>
 
 
 <script>
 
-  function openExam(name) {
-
-    document.getElementById("homePage").classList.remove("active");
-
-    document.getElementById("subjectPage").classList.remove("active");
-
-    document.getElementById("examPage").classList.add("active");
-
-    document.getElementById("examTitle").innerText = name;
-
-    document.getElementById("examDescription").innerText =
-      name + " की तैयारी के लिए Syllabus, Notes, PYQ और Practice Questions।";
-
-    window.scrollTo(0, 0);
-  }
+let currentExam="";
+let currentSubject="";
+let currentTopic="";
 
 
-  function openSubject(name) {
-
-    document.getElementById("homePage").classList.remove("active");
-
-    document.getElementById("examPage").classList.remove("active");
-
-    document.getElementById("subjectPage").classList.add("active");
-
-    document.getElementById("subjectTitle").innerText = name;
-
-    window.scrollTo(0, 0);
-  }
+const subjects=[
+"Mathematics",
+"Reasoning",
+"English",
+"GK / GS",
+"Science",
+"History",
+"Geography",
+"Polity"
+];
 
 
-  function goHome() {
+const topics={
+"Mathematics":[
+"Number System",
+"Percentage",
+"Profit and Loss",
+"Ratio and Proportion",
+"Average",
+"Simple Interest",
+"Compound Interest",
+"Time and Work",
+"Time Speed Distance",
+"Algebra",
+"Geometry",
+"Mensuration",
+"Data Interpretation"
+],
 
-    document.getElementById("examPage").classList.remove("active");
+"Reasoning":[
+"Analogy",
+"Classification",
+"Series",
+"Coding Decoding",
+"Blood Relation",
+"Direction Test",
+"Ranking",
+"Calendar",
+"Clock",
+"Venn Diagram",
+"Puzzle",
+"Statement and Conclusion"
+],
 
-    document.getElementById("subjectPage").classList.remove("active");
+"English":[
+"Parts of Speech",
+"Noun",
+"Pronoun",
+"Verb",
+"Adjective",
+"Adverb",
+"Tense",
+"Voice",
+"Narration",
+"Synonyms",
+"Antonyms",
+"One Word Substitution",
+"Idioms"
+],
 
-    document.getElementById("homePage").classList.add("active");
+"GK / GS":[
+"Indian GK",
+"World GK",
+"Current Affairs",
+"General Science",
+"Important Days",
+"Books and Authors",
+"Awards",
+"Sports",
+"Government Schemes"
+],
 
-    window.scrollTo(0, 0);
-  }
+"Science":[
+"Physics",
+"Chemistry",
+"Biology",
+"Human Body",
+"Motion",
+"Force",
+"Light",
+"Electricity",
+"Acid Base Salt"
+],
+
+"History":[
+"Ancient History",
+"Medieval History",
+"Modern History",
+"Indus Valley Civilization",
+"Vedic Period",
+"Mughal Empire",
+"Indian National Movement",
+"Freedom Struggle"
+],
+
+"Geography":[
+"Indian Geography",
+"World Geography",
+"Rivers",
+"Mountains",
+"Soil",
+"Climate",
+"Agriculture",
+"Minerals",
+"Industries"
+],
+
+"Polity":[
+"Indian Constitution",
+"Fundamental Rights",
+"Fundamental Duties",
+"President",
+"Prime Minister",
+"Parliament",
+"Supreme Court",
+"Election Commission",
+"Panchayati Raj"
+]
+};
 
 
-  function showMessage() {
+function hideAll(){
 
-    alert("यह section जल्द ही Study Material से जोड़ा जाएगा।");
+document.querySelectorAll(".page")
+.forEach(p=>p.classList.remove("active"));
 
-  }
+}
 
 
-  function searchCards() {
+function home(){
 
-    let input =
-      document.getElementById("searchBox").value.toLowerCase();
+hideAll();
 
-    let cards =
-      document.querySelectorAll(".searchable");
+document.getElementById("home")
+.classList.add("active");
 
-    cards.forEach(function(card) {
+window.scrollTo(0,0);
 
-      let text =
-        card.innerText.toLowerCase();
+}
 
-      if (text.includes(input)) {
-        card.style.display = "";
-      } else {
-        card.style.display = "none";
-      }
 
-    });
+function exam(name){
 
-  }
+currentExam=name;
+
+hideAll();
+
+document.getElementById("examPage")
+.classList.add("active");
+
+document.getElementById("examName")
+.innerText=name;
+
+let html="";
+
+subjects.forEach(s=>{
+
+html+=`
+<div class="card" onclick="openSubject('${s}')">
+<div class="icon">📚</div>
+<h3>${s}</h3>
+<p>Notes • PYQ • Practice</p>
+</div>
+`;
+
+});
+
+document.getElementById("examSubjects").innerHTML=html;
+
+window.scrollTo(0,0);
+
+}
+
+
+function subject(name){
+
+currentSubject=name;
+
+hideAll();
+
+document.getElementById("subjectPage")
+.classList.add("active");
+
+document.getElementById("subjectName")
+.innerText=name;
+
+showTopics(name);
+
+window.scrollTo(0,0);
+
+}
+
+
+function openSubject(name){
+
+currentSubject=name;
+
+hideAll();
+
+document.getElementById("subjectPage")
+.classList.add("active");
+
+document.getElementById("subjectName")
+.innerText=name;
+
+showTopics(name);
+
+window.scrollTo(0,0);
+
+}
+
+
+function showTopics(name){
+
+let html="";
+
+(topics[name] || ["Important Topics"])
+.forEach(t=>{
+
+html+=`
+<div class="topic" onclick="openTopic('${t}')">
+📌 <b>${t}</b>
+<p>Notes • PYQ • Practice Questions</p>
+</div>
+`;
+
+});
+
+document.getElementById("topics").innerHTML=html;
+
+}
+
+
+function openTopic(topic){
+
+currentTopic=topic;
+
+hideAll();
+
+document.getElementById("materialPage")
+.classList.add("active");
+
+document.getElementById("materialTitle")
+.innerText=currentSubject+" → "+topic;
+
+window.scrollTo(0,0);
+
+}
+
+
+function material(type){
+
+hideAll();
+
+document.getElementById("contentPage")
+.classList.add("active");
+
+document.getElementById("contentTitle")
+.innerText=
+currentSubject+" → "+currentTopic+" → "+type;
+
+
+let html="";
+
+
+if(type==="Notes"){
+
+html=`
+<div class="box">
+<h3>📖 ${currentTopic} Notes</h3>
+<br>
+<p>
+यहाँ ${currentTopic} के महत्वपूर्ण Notes उपलब्ध होंगे।
+</p>
+<br>
+<p>
+इस section में हम आगे पूरा topic-wise study material जोड़ सकते हैं।
+</p>
+</div>
+`;
+
+}
+
+
+if(type==="PYQ"){
+
+html=`
+<div class="question">
+<b>Q1. ${currentTopic} से संबंधित महत्वपूर्ण प्रश्न</b>
+
+<div class="option">A. विकल्प 1</div>
+<div class="option">B. विकल्प 2</div>
+<div class="option">C. विकल्प 3</div>
+<div class="option">D. विकल्प 4</div>
+
+<button class="showAnswer"
+onclick="this.nextElementSibling.style.display='block'">
+Answer देखें
+</button>
+
+<div class="answer">
+<b>उत्तर:</b> सही विकल्प बाद में यहाँ दिया जाएगा।
+</div>
+
+</div>
+
+<div class="box">
+📝 यहाँ हम आगे वास्तविक Previous Year Questions जोड़ेंगे।
+</div>
+`;
+
+}
+
+
+if(type==="Practice Questions"){
+
+html=`
+<div class="question">
+
+<b>Q1. ${currentTopic} का Practice Question</b>
+
+<div class="option">A. विकल्प 1</div>
+<div class="option">B. विकल्प 2</div>
+<div class="option">C. विकल्प 3</div>
+<div class="option">D. विकल्प 4</div>
+
+<button class="showAnswer"
+onclick="this.nextElementSibling.style.display='block'">
+Answer देखें
+</button>
+
+<div class="answer">
+<b>उत्तर:</b> अभ्यास प्रश्न का सही उत्तर।
+</div>
+
+</div>
+
+<div class="question">
+
+<b>Q2. दूसरा Practice Question</b>
+
+<div class="option">A. विकल्प 1</div>
+<div class="option">B. विकल्प 2</div>
+<div class="option">C. विकल्प 3</div>
+<div class="option">D. विकल्प 4</div>
+
+<button class="showAnswer"
+onclick="this.nextElementSibling.style.display='block'">
+Answer देखें
+</button>
+
+<div class="answer">
+<b>उत्तर:</b> सही उत्तर।
+</div>
+
+</div>
+`;
+
+}
+
+
+document.getElementById("content")
+.innerHTML=html;
+
+window.scrollTo(0,0);
+
+}
+
+
+function backExam(){
+
+exam(currentExam);
+
+}
+
+
+function backSubject(){
+
+hideAll();
+
+document.getElementById("subjectPage")
+.classList.add("active");
+
+showTopics(currentSubject);
+
+window.scrollTo(0,0);
+
+}
+
+
+function backMaterial(){
+
+openTopic(currentTopic);
+
+}
+
+
+function searchCards(){
+
+let value=
+document.getElementById("search")
+.value.toLowerCase();
+
+document.querySelectorAll(".searchable")
+.forEach(card=>{
+
+let text=
+card.innerText.toLowerCase();
+
+card.style.display=
+text.includes(value) ? "" : "none";
+
+});
+
+}
 
 </script>
 
